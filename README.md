@@ -8,6 +8,8 @@
   [![Tauri](https://img.shields.io/badge/tauri-v2-blue.svg)](https://tauri.app)
 </div>
 
+## ubuntu & redhat可以使用包中'milkup_1.0.17_amd64.deb'和'milkup_1.0.17_amd64.rpm'安装，windows系统要下载源码包，在windows下构建。包中'milkup.exe'不能使用。
+
 ## ✨ 特性
 
 ### 编辑体验
