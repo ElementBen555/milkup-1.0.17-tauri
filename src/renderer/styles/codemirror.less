@@ -1,0 +1,70 @@
+.cm-editor {
+  height: 100%;
+  width: 100%;
+  user-select: text; // 源码编辑器允许选中文本
+  -webkit-user-select: text;
+}
+
+.cm-gutters {
+  background-color: var(--background-color-2) !important;
+  border-right: none !important;
+}
+
+.cm-activeLine,
+.cm-activeLineGutter {
+  background-color: var(--active-line-color) !important;
+}
+
+.cm-content {
+  background: var(--background-color-2);
+
+  .cm-line::selection {
+    background: var(--selected-background-color) !important;
+    color: var(--selected-color);
+  }
+
+  .cm-line span::selection {
+    background: var(--selected-background-color) !important;
+    color: var(--selected-color);
+  }
+}
+
+.cm-panels-bottom {
+  background: var(--background-color-2) !important;
+  border-top: 1px solid var(--border-color) !important;
+}
+
+.cm-search.cm-panel {
+  padding: 16px 18px !important;
+  background: var(--background-color-2) !important;
+  color: var(--text-color) !important;
+
+  input {
+    background: var(--background-color-2) !important;
+    color: var(--text-color) !important;
+    font-size: 12px !important;
+    border-radius: 4px !important;
+  }
+
+  button {
+    background: var(--background-color-2) !important;
+    color: var(--text-color) !important;
+    font-size: 12px !important;
+    border-radius: 4px !important;
+  }
+
+  input[type='checkbox'] {
+    background: var(--background-color-2) !important;
+    color: var(--text-color) !important;
+  }
+
+  label {
+    display: inline-flex;
+    align-items: center;
+    color: var(--text-color) !important;
+  }
+}
+
+.cm-scroller {
+  scroll-behavior: unset !important;
+}

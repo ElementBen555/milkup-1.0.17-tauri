@@ -1,0 +1,46 @@
+node_modules/
+.DS_Store
+*.local
+**/.vitepress/cache
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+dist/
+dist-electron/
+out/
+build/
+
+# Vite cache
+.vite/
+
+# Electron build artifacts
+*.asar
+*.asar.unpacked
+
+# IDE files
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# System files
+.DS_Store
+Thumbs.db
+
+# local env files
+.env.local
+.env.*.local
+.eslintcache
+
+# Test output
+coverage/
+
+pnpm-lock.yaml

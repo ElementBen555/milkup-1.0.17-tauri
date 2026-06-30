@@ -1,0 +1,127 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4976313 */
+  src: url('iconfont.woff2?t=1760582481341') format('woff2'),
+       url('iconfont.woff?t=1760582481341') format('woff'),
+       url('iconfont.ttf?t=1760582481341') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-fanyi:before {
+  content: "\e65d";
+}
+
+.icon-markdown2:before {
+  content: "\e742";
+}
+
+.icon-arrow-right:before {
+  content: "\ed8f";
+}
+
+.icon-folder-copy:before {
+  content: "\ed90";
+}
+
+.icon-waiguan:before {
+  content: "\e6b3";
+}
+
+.icon-document-copy:before {
+  content: "\e650";
+}
+
+.icon-document:before {
+  content: "\e654";
+}
+
+.icon-folder-opened:before {
+  content: "\e657";
+}
+
+.icon-circle-check:before {
+  content: "\e63e";
+}
+
+.icon-warning-outline:before {
+  content: "\e671";
+}
+
+.icon-html:before {
+  content: "\e649";
+}
+
+.icon-pdf:before {
+  content: "\e653";
+}
+
+.icon-edit:before {
+  content: "\e651";
+}
+
+.icon-download:before {
+  content: "\e652";
+}
+
+.icon-plus:before {
+  content: "\e672";
+}
+
+.icon-List-outlined:before {
+  content: "\e6ea";
+}
+
+.icon-config-props:before {
+  content: "\e64f";
+}
+
+.icon-baocun:before {
+  content: "\e612";
+}
+
+.icon-input:before {
+  content: "\e648";
+}
+
+.icon-script:before {
+  content: "\e656";
+}
+
+.icon-data-select:before {
+  content: "\e66b";
+}
+
+.icon-markdown:before {
+  content: "\e66c";
+}
+
+.icon-github:before {
+  content: "\e64c";
+}
+
+.icon-logo:before {
+  content: "\e600";
+}
+
+.icon-min:before {
+  content: "\e65a";
+}
+
+.icon-close:before {
+  content: "\e609";
+}
+
+.icon-max:before {
+  content: "\e65b";
+}
+
+.icon-normal:before {
+  content: "\e65c";
+}
+

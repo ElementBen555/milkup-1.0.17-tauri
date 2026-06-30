@@ -1,0 +1,137 @@
+type FileTraitsDTO = import("../shared/types/tearoff").FileTraitsDTO;
+type TearOffTabData = import("../shared/types/tearoff").TearOffTabData;
+
+interface Window {
+  electronAPI: {
+    openFile: () => Promise<{
+      filePath: string;
+      content: string;
+      fileTraits: FileTraitsDTO;
+    } | null>;
+    getIsReadOnly: (filePath: string) => Promise<boolean>;
+    saveFile: (
+      filePath: string | null,
+      content: string,
+      fileTraits?: FileTraitsDTO,
+      imageLocalPath?: string,
+      imageUseFileNameFolder?: boolean
+    ) => Promise<{ filePath: string; content: string } | null>;
+    saveFileAs: (
+      content: string,
+      fileTraits?: FileTraitsDTO,
+      imageLocalPath?: string,
+      imageUseFileNameFolder?: boolean
+    ) => Promise<{ filePath: string; content: string } | null>;
+    setTitle: (filePath: string | null) => void;
+    changeSaveStatus: (isSaved: boolean) => void;
+    on: (channel: string, listener: (...args: any[]) => void) => void;
+    removeListener: (channel: string, listener: (...args: any[]) => void) => void;
+    windowControl: (action: "minimize" | "maximize" | "close") => void;
+    closeDiscard: () => void;
+    onOpenFileAtLaunch: (
+      cb: (payload: { filePath: string; content: string; fileTraits?: FileTraitsDTO }) => void
+    ) => void;
+    openExternal: (url: string) => Promise<void>;
+    openLink: (href: string, currentFilePath?: string | null) => Promise<void>;
+    openImagePreview: (
+      src: string,
+      alt?: string,
+      options?: { items?: Array<{ src: string; alt?: string }>; index?: number }
+    ) => Promise<void>;
+    getFilePathInClipboard: () => Promise<string | null>;
+    writeTempImage: (
+      file: Uint8Array<ArrayBuffer>,
+      targetPath: string,
+      currentFilePath?: string | null,
+      fileName?: string,
+      mimeType?: string,
+      useFileNameFolder?: boolean
+    ) => Promise<string>;
+    showImageUnsavedChoice: () => Promise<"save" | "fallback" | "cancel">;
+    // 图片路径解析
+    resolveImagePath: (markdownFilePath: string, imagePath: string) => Promise<string>;
+    // 导出为 PDF
+    exportAsPDF: (
+      elementSelector: string,
+      outputName: string,
+      options?: ExportPDFOptions
+    ) => Promise<void>;
+    // 导出为 Word
+    exportAsWord: (blocks: Block, outputName: string) => Promise<void>;
+    // 通过路径读取文件（用于拖拽）
+    readFileByPath: (filePath: string) => Promise<{
+      filePath: string;
+      content: string;
+      fileTraits: FileTraitsDTO;
+    } | null>;
+    // 显示文件覆盖确认对话框
+    showOverwriteConfirm: (fileName: string) => Promise<number>;
+    // 显示关闭确认对话框
+    showCloseConfirm: (fileName: string) => Promise<number>;
+    // 显示文件选择对话框
+    showOpenDialog: (
+      options: any
+    ) => Promise<{ canceled: boolean; filePaths: string[] } | undefined>;
+    // 获取拖拽文件的真实路径
+    getPathForFile: (file: File) => string | undefined;
+    // 字体相关
+    getSystemFonts: () => Promise<string[]>;
+    // 文件夹相关
+    getDirectoryFiles: (
+      dirPath: string
+    ) => Promise<
+      Array<{ name: string; path: string; isDirectory: boolean; mtime: number; children?: any[] }>
+    >;
+    workspaceExists: (dirPath: string) => Promise<boolean>;
+    // 监听文件变化
+    watchFiles: (filePaths: string[]) => void;
+
+    // 目录监听
+    watchDirectory: (dirPath: string) => void;
+    unwatchDirectory: () => void;
+
+    // 文件操作
+    createFile: (dirPath: string, fileName: string) => Promise<string | null>;
+    createFolder: (dirPath: string, folderName: string) => Promise<string | null>;
+    deleteFile: (filePath: string) => Promise<boolean>;
+    renameFile: (oldPath: string, newName: string) => Promise<string | null>;
+    cleanupLocalImages: (content: string) => Promise<boolean>;
+    // 主题编辑器相关
+    openThemeEditor: (theme?: any) => void;
+    themeEditorWindowControl: (action: "minimize" | "maximize" | "close") => void;
+    saveCustomTheme: (theme: any) => void;
+    platform: NodeJS.Platform;
+    rendererReady: () => void;
+    // Tab 拖拽分离
+    tearOffTabStart: (
+      tabData: TearOffTabData,
+      screenX: number,
+      screenY: number,
+      offsetX: number,
+      offsetY: number
+    ) => Promise<boolean>;
+    tearOffTabEnd: (
+      screenX: number,
+      screenY: number
+    ) => Promise<{ action: "created" | "merged" | "failed" }>;
+    tearOffTabCancel: () => Promise<boolean>;
+    focusFileIfOpen: (filePath: string) => Promise<{ found: boolean }>;
+    getInitialTabData: () => Promise<TearOffTabData | null>;
+    getWindowBounds: () => Promise<{ x: number; y: number; width: number; height: number } | null>;
+    // 单 Tab 窗口拖拽
+    startWindowDrag: (tabData: TearOffTabData, offsetX: number, offsetY: number) => void;
+    stopWindowDrag: () => void;
+    dropMerge: (
+      tabData: TearOffTabData,
+      screenX: number,
+      screenY: number
+    ) => Promise<{ action: "merged" | "none" }>;
+    // 自动更新相关
+    checkForUpdates: () => Promise<any>;
+    downloadUpdate: () => Promise<any>;
+    cancelUpdate: () => Promise<void>;
+    quitAndInstall: () => Promise<void>;
+    onUpdateStatus: (callback: (status: any) => void) => void;
+    onDownloadProgress: (callback: (progress: any) => void) => void;
+  };
+}

@@ -1,0 +1,41 @@
+import mitt from "mitt";
+
+type Events = {
+  "file:Change": void; // Triggered when a file is changed
+  "spellcheck:Update": boolean; // Triggered when spellcheck is updated
+  "outline:Update": Array<{ text: string; level: number; id: string; pos: number }>; // Triggered when the outline is updated
+  "outline:scrollTo": number; // Triggered when user clicks an outline item, value is document position
+  "close:confirm": void; // Triggered when need to show close confirmation dialog
+  "close:discard": void; // Triggered when user chooses to discard changes
+  "menu-save": boolean; // Triggered when user wants to save
+  "trigger-save": boolean; // Triggered when main process requests save
+  "tab:close-confirm": {
+    tabId: string;
+    tabName: string;
+    isLastTab?: boolean;
+    resolver?: (closed: boolean) => void;
+  }; // Triggered when tab close confirmation is needed
+  "tab:switch": {
+    id: string;
+    name: string;
+    filePath: string | null;
+    content: string;
+    originalContent: string;
+    isModified: boolean;
+    scrollRatio?: number;
+    readOnly: boolean;
+  }; // Triggered when switching tabs
+  "file:overwrite-confirm": {
+    fileName: string;
+    resolver: (choice: "cancel" | "save" | "overwrite") => void;
+  }; // Triggered when file overwrite confirmation is needed
+  "file:changed-confirm": { fileName: string; resolver: (choice: "cancel" | "overwrite") => void }; // Triggered when file changed confirmation is needed
+  "update:available": { version: string; url: string; notes: string }; // Triggered when an update is available
+  "sourceView:toggle": void; // Triggered when source view mode is toggled
+  "sourceView:changed": boolean; // Triggered when source view mode state changes
+  "editor:reload": void; // Triggered when active editor should reload its internal ProseMirror instance
+} & Record<string, unknown>;
+
+const emitter = mitt<Events>();
+
+export default emitter;

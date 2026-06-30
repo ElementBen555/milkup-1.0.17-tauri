@@ -1,0 +1,4074 @@
+{
+	"mmlgie5": {
+		"zh-cn": "自定义主题",
+		"ja": "カスタムテーマ",
+		"ko": "테마 사용자 정의",
+		"ru": "Самоопределение темы",
+		"en": "Custom theme",
+		"fr": "Personnalisez votre thème"
+	},
+	"o96fhwm": {
+		"zh-cn": "这是自定义主题，包含了用户自定义的css变量",
+		"ja": "ユーザー定義のCSS変数を含むカスタムテーマです",
+		"ko": "사용자 정의 css 변수를 포함하는 사용자 정의 테마이다",
+		"ru": "Это самоопределенная тема, содержащая переменные css, определяемые пользователем",
+		"en": "This is a custom theme that includes user-defined css variables",
+		"fr": "Ceci est un thème personnalisé qui contient des variables CSS définies par l’utilisateur"
+	},
+	"by4cg24": {
+		"zh-cn": "导出完成",
+		"ja": "エクスポート完了",
+		"ko": "내보내기 완료",
+		"ru": "Вывоз завершен.",
+		"en": "Export completed",
+		"fr": "L’exportation est terminée"
+	},
+	"784cmn8": {
+		"zh-cn": "导入主题格式错误",
+		"ja": "インポートしたテーマの形式が正しくありません",
+		"ko": "테마 형식을 가져오는 중 오류가 발생했습니다",
+		"ru": "Введена ошибка формата",
+		"en": "The format of the imported theme is incorrect",
+		"fr": "Format de thème importé incorrect"
+	},
+	"sw72mu6": {
+		"zh-cn": "导入主题完成",
+		"ja": "テーマのインポートが完了しました",
+		"ko": "테마 가져오기 완료",
+		"ru": "Импорт завершен",
+		"en": "The theme import has been completed.",
+		"fr": "Importation de thèmes terminée"
+	},
+	"wf1d30p": {
+		"zh-cn": " 选择\"保存\"将先保存当前内容，然后打开新文件。 ",
+		"ja": "「保存」を選択すると、現在の内容を保存してから新しいファイルを開きます。",
+		"ko": "저장을 선택하면 현재 내용을 저장한 다음 새 파일을 엽니다.",
+		"ru": "Выбор \"сохранить\" сначала сохраняет текущее содержание, а затем открывает новые файлы.",
+		"en": "Selecting \"Save\" will first save the current content and then open a new file.",
+		"fr": "En sélectionnant \"enregistrer\", vous enregistrerez d’abord le contenu actuel, puis vous ouvrirez le nouveau fichier."
+	},
+	"4q3gv56m": {
+		"zh-cn": "\n<br />\n\n# MilkUp\n\n<br />\n\n> 这是一段测试文字\n\n<br />\n\n***\n\n<br />\n\n* item1\n* item2\n* item3\n\n代码：\n\n\\`\\`\\`JavaScript\nconst text = \"Hello Word!\"\nconsole.log(text)\n\\`\\`\\`\n\n<br />\n\n| 1  | 2  | 3  |\n| :- | :- | :- |\n| 1  | 2  | 3  |\n| 1  | 2  | 3  |\n\n\n",
+		"ja": "\n<br />\n\n# MilkUp\n\n<br />\n\n> これはテスト用テキストです\n\n<br />\n\n***\n\n<br />\n\n* item1\n* item2\n* item3\n\nコード:\n\\`\\`\\`JavaScript\nconst text = \"Hello Word!\"\nconsole.log(text)\n\\`\\`\\`\n\n<br />\n\n| 1  | 2  | 3  |\n| :- | :- | :- |\n| 1  | 2  | 3  |\n| 1  | 2  | 3  |\n\n\n",
+		"ko": "< 비 알/>\n\n# milkup\n\n< 비 알/>\n\n이것은 테스트 텍스트입니다\n\n< 비 알/>\n\n* * *\n\n< 비 알/>\n\n* item1\n* item2\n* item3\n\n코드:\n\njavascript\\`\\`\\`\nconst text =\"hello word!\"\n(console) 로그 (text)\n\\\\` `\\`\n\n< 비 알/>\n\n1 2 3 | | | |\n|:-| |:-|\n1 2 3 | | | |\n1 2 3 | | | |",
+		"ru": "< br / >\n\n# MilkUp\n\n< br / >\n\n> это тестовый текст\n\n< br / >\n\n* * *\n\n< br / >\n\n* item1\n* item2\n* item3\n\nКод:\n\n` перевод ` \\ ` JavaScript\nconst text = \"Hello Word!\"\nКонсол бревн (text)\n` перевод ` \\ `\n\n< br / >\n\n- да 1 - да 2 - да 3 - да\n- да: - - да: - - да: - - да\n- да 1 - да 2 - да 3 - да\n- да 1 - да 2 - да 3 - да",
+		"en": "<br />\n\n# MilkUp\n\n<br />\n\nThis is a test text\n\n<br />\n\n* * *\n\n<br />\n\n* item1\n* item2\n* item3\n\nCode\n\n\\`\\`\\`JavaScript\nconst text = \"Hello Word!\"\nconsole.log(text)\n\\ ` \\ ` \\ `\n\n<br />\n\n1. 2. 3\n{\" id \": 1313841,\" text \":\" : \":\n1. 2. 3\n1. 2. 3",
+		"fr": "<br />\n\n# MilkUp\n\n<br />\n\n> ceci est un texte de test\n\n<br />\n\n* * *\n\n<br />\n\n* item1\n* item2\n* item3\n\nLe code:\n\n\\`\\`\\`JavaScript\nconst text = \"Hello Word!\"\nconsole.log(text)\n\\ ` ` \\ \\ \\ `\n\n<br />\n\nGaliléennes galiléennes galiléennes de 2 3 galiléennes\nGaliléennes - galiléennes: - galiléennes galiléennes\nGaliléennes galiléennes galiléennes de 2 3 galiléennes\nGaliléennes galiléennes galiléennes de 2 3 galiléennes"
+	},
+	"tmkfmy5": {
+		"zh-cn": "主题已重置",
+		"ja": "テーマをリセットしました",
+		"ko": "테마가 초기화되었습니다",
+		"ru": "Объект перезагружен.",
+		"en": "The theme has been reset.",
+		"fr": "Le thème a été réinitialisé"
+	},
+	"64x4ek7": {
+		"zh-cn": "未找到指定主题",
+		"ja": "指定したテーマが見つかりません",
+		"ko": "테마를 찾을 수 없습니다",
+		"ru": "Объект не был найден",
+		"en": "The specified topic was not found",
+		"fr": "Aucun sujet spécifié trouvé"
+	},
+	"fjzq13": {
+		"zh-cn": "未定义",
+		"ja": "未定義",
+		"ko": "정의되지 않음",
+		"ru": "Не определено.",
+		"en": "Undefined",
+		"fr": "Non défini non défini"
+	},
+	"ie9kds7": {
+		"zh-cn": " 主题编辑器 ",
+		"ja": "テーマエディター",
+		"ko": "테마 편집기",
+		"ru": "Редактор темы",
+		"en": "Theme Editor",
+		"fr": "Éditeur de thèmes"
+	},
+	"ai9rni4": {
+		"zh-cn": "主题配置",
+		"ja": "テーマ設定",
+		"ko": "테마 설정",
+		"ru": "Компоновка темы",
+		"en": "Theme configuration",
+		"fr": "Configuration des thèmes"
+	},
+	"ahygx74": {
+		"zh-cn": "主题信息",
+		"ja": "テーマ情報",
+		"ko": "테마 정보",
+		"ru": "Информация по теме",
+		"en": "Theme Information",
+		"fr": "Informations par sujet"
+	},
+	"9rfc25c": {
+		"zh-cn": " 设置主题的名称和描述 ",
+		"ja": "テーマ名と説明を設定",
+		"ko": "테마의 이름과 설명을 설정합니다",
+		"ru": "Установите имя и описание объекта",
+		"en": "Set the name and description of the theme",
+		"fr": "Définissez le nom et la description du thème"
+	},
+	"ahzbi84": {
+		"zh-cn": "主题名称",
+		"ja": "テーマ名",
+		"ko": "테마 이름",
+		"ru": "Имя объекта",
+		"en": "Theme Name",
+		"fr": "Nom du sujet"
+	},
+	"qg2g9a6": {
+		"zh-cn": "输入主题名称",
+		"ja": "テーマ名を入力",
+		"ko": "테마 이름을 입력하십시오",
+		"ru": "Введите имя объекта.",
+		"en": "Enter the topic name",
+		"fr": "Entrez le nom du sujet"
+	},
+	"ai24ce4": {
+		"zh-cn": "主题描述",
+		"ja": "テーマの説明",
+		"ko": "테마 설명",
+		"ru": "Описание объекта.",
+		"en": "Theme description",
+		"fr": "Description du sujet"
+	},
+	"qfznf46": {
+		"zh-cn": "输入主题描述",
+		"ja": "テーマの説明を入力",
+		"ko": "테마 설명을 입력하십시오",
+		"ru": "Введите описание объекта.",
+		"en": "Enter the topic description",
+		"fr": "Entrez la description du sujet"
+	},
+	"aib29j4": {
+		"zh-cn": "主题预设",
+		"ja": "テーマプリセット",
+		"ko": "테마 설정값",
+		"ru": "Предварительная тематическая установка",
+		"en": "Theme preset",
+		"fr": "Thèmes prédéfinis"
+	},
+	"2k1z9ba": {
+		"zh-cn": " 快速应用预设主题 ",
+		"ja": "プリセットテーマをすばやく適用",
+		"ko": "기본 테마를 빠르게 적용합니다",
+		"ru": "Быстро применить предварительные темы",
+		"en": "Quickly apply preset themes",
+		"fr": "Appliquez rapidement des thèmes prédéfinis"
+	},
+	"cphx84": {
+		"zh-cn": " 亮色 ",
+		"ja": "ライト",
+		"ko": "밝은 색상",
+		"ru": "Нибуд ярк",
+		"en": "Bright colors",
+		"fr": "sulfureux"
+	},
+	"g7kpx4": {
+		"zh-cn": " 暗色 ",
+		"ja": "ダーク",
+		"ko": "어두 운 색",
+		"ru": "темн",
+		"en": "Dark color",
+		"fr": "grisée"
+	},
+	"8fkre36": {
+		"zh-cn": "应用颜色配置",
+		"ja": "アプリ配色を適用",
+		"ko": "색상 설정 적용하기",
+		"ru": "Прикладная цветовая конфигурация",
+		"en": "Apply color configuration",
+		"fr": "Configuration des couleurs appliquées"
+	},
+	"zd0dysd": {
+		"zh-cn": " 配置应用界面的颜色主题 ",
+		"ja": "アプリ画面のカラーテーマを設定",
+		"ko": "프로그램 인터페이스의 색 테마를 설정합니다",
+		"ru": "Тематика цветного интерфейса конфигурации",
+		"en": "Configure the color theme of the application interface",
+		"fr": "Configurer le thème de couleur de l’interface de l’application"
+	},
+	"fdfzvg7": {
+		"zh-cn": "编辑器颜色配置",
+		"ja": "エディター配色設定",
+		"ko": "편집기 색상 설정입니다",
+		"ru": "Цветовая конфигурация редактора",
+		"en": "Editor color configuration",
+		"fr": "Configuration des couleurs de l’éditeur"
+	},
+	"qza2uk": {
+		"zh-cn": " 配置Markdown编辑器的颜色主题 ",
+		"ja": "Markdownエディターのカラーテーマを設定",
+		"ko": "마크다운 편집기의 색상 테마를 설정합니다",
+		"ru": "Конфигурация цветной темы редактора Markdown",
+		"en": "Configure the color theme of the Markdown editor",
+		"fr": "Configurer le thème de couleur dans l’éditeur Markdown"
+	},
+	"miwv34": {
+		"zh-cn": " 重置 ",
+		"ja": "リセット",
+		"ko": "초기화",
+		"ru": "перезагрузк",
+		"en": "Reset",
+		"fr": "La valeur de remplacement"
+	},
+	"fvozyw6": {
+		"zh-cn": " 保存主题 ",
+		"ja": "テーマを保存",
+		"ko": "테마 저장",
+		"ru": "Сохранить тему",
+		"en": "Save the topic",
+		"fr": "Sauvegarder le sujet"
+	},
+	"bzoafw4": {
+		"zh-cn": "实时预览",
+		"ja": "リアルタイムプレビュー",
+		"ko": "실시간 미리 보기",
+		"ru": "Предварительный просмотр в реальном времени",
+		"en": "Real-time preview",
+		"fr": "Aperçu temps réel"
+	},
+	"e3k42": {
+		"zh-cn": "亮色",
+		"ja": "ライト",
+		"ko": "밝은 색상",
+		"ru": "Нибуд ярк",
+		"en": "Bright colors",
+		"fr": "sulfureux"
+	},
+	"x3q8rrg": {
+		"zh-cn": "明亮清新的标准主题，适合日常使用",
+		"ja": "明るく爽やかな標準テーマ。日常利用に最適です",
+		"ko": "밝고 산뜻한 스탠더드 모티프로 데일리하게 활용하시기 좋습니다",
+		"ru": "Стандартная тема для светлого и свежего использования",
+		"en": "A bright and fresh standard theme, suitable for daily use",
+		"fr": "Thème standard lumineux et frais pour un usage quotidien"
+	},
+	"i5yz2": {
+		"zh-cn": "暗色",
+		"ja": "ダーク",
+		"ko": "어두 운 색",
+		"ru": "темн",
+		"en": "Dark color",
+		"fr": "grisée"
+	},
+	"9e3panj": {
+		"zh-cn": "深色风格主题，减少夜间使用时的眼睛疲劳",
+		"ja": "夜間利用時の目の疲れを軽減するダークテーマ",
+		"ko": "다크 컬러 스타일 모티브로 야간 사용시 눈의 피로를 줄여줍니다",
+		"ru": "Темный стиль, меньше усталости глаза при использовании ночью",
+		"en": "The dark style theme reduces eye fatigue when used at night",
+		"fr": "Thème de style foncé pour réduire la fatigue oculaire lors de l’utilisation nocturne"
+	},
+	"lld0wo8": {
+		"zh-cn": "Github白色",
+		"ja": "GitHubライト",
+		"ko": "깃허브 화이트",
+		"ru": "Белый гитуб",
+		"en": "Github is white",
+		"fr": "Github en blanc"
+	},
+	"71xjvsk": {
+		"zh-cn": "类似GitHub风格的明亮主题，干净整洁",
+		"ja": "GitHub風の明るいテーマ。すっきり見やすい",
+		"ko": "깃허브 스타일 같은 밝은 모티브로 깔끔하게",
+		"ru": "Яркая тема, похожая на стиль гитуба, чистая и аккуратная",
+		"en": "A bright theme similar to GitHub's style, clean and tidy",
+		"fr": "Thème lumineux similaire au style GitHub, propre et rangé"
+	},
+	"llabjy8": {
+		"zh-cn": "Github暗色",
+		"ja": "GitHubダーク",
+		"ko": "github 어둡게",
+		"ru": "гитуб",
+		"en": "Github is dark",
+		"fr": "Github couleur sombre"
+	},
+	"t93q08m": {
+		"zh-cn": "GitHub深色模式风格，适合夜间或弱光环境",
+		"ja": "GitHubダークモード風。夜間や暗所に最適",
+		"ko": "github 다크 모드 스타일로 야간이나 약한 조명 환경에 적합합니다",
+		"ru": "Темный стиль гитуба, подходящий для ночного или слабого света",
+		"en": "The GitHub dark mode style is suitable for night or low-light environments",
+		"fr": "GitHub style dark mode pour la nuit ou les environnements à faible luminosité"
+	},
+	"f14ka3": {
+		"zh-cn": "护眼色",
+		"ja": "アイケア",
+		"ko": "눈 보호용 안색",
+		"ru": "Глаза.",
+		"en": "Eye-protecting color",
+		"fr": "Protection des yeux couleur"
+	},
+	"dw4o5pd": {
+		"zh-cn": "纸张护眼色，适合长时间阅读",
+		"ja": "紙のようなアイケア配色。長時間の読書に最適",
+		"ko": "종이는 눈을 보호하는 색상으로 장시간 읽기에 적합하다",
+		"ru": "Бумажный крем для глаз, подходящий для долгого чтения",
+		"en": "The paper is in eye-protecting color, suitable for long-term reading",
+		"fr": "Papier couleur de protection des yeux, idéal pour la lecture prolongée"
+	},
+	"i5y42": {
+		"zh-cn": "暖色",
+		"ja": "暖色",
+		"ko": "색",
+		"ru": "тепл",
+		"en": "Warm color",
+		"fr": "couleurs"
+	},
+	"cdt2o8e": {
+		"zh-cn": "暖色风格主题，适合长时间阅读",
+		"ja": "暖色系テーマ。長時間の読書に最適",
+		"ko": "웜스타일의 테마여서 장시간 읽기에 좋습니다",
+		"ru": "Теплая цветная тема для чтения",
+		"en": "The warm-toned style theme is suitable for long-term reading",
+		"fr": "Thème de style de couleur chaude pour la lecture longue"
+	},
+	"e0t32": {
+		"zh-cn": "主色",
+		"ja": "メインカラー",
+		"ko": "주 색",
+		"ru": "Главн цвет",
+		"en": "Main color",
+		"fr": "principale"
+	},
+	"ixrl2": {
+		"zh-cn": "次色",
+		"ja": "サブカラー",
+		"ko": "차 색",
+		"ru": "Раз цвет",
+		"en": "Secondary color",
+		"fr": "Sa couleur"
+	},
+	"jda5r3": {
+		"zh-cn": "背景色",
+		"ja": "背景色",
+		"ko": "배경색",
+		"ru": "Фоновый цвет.",
+		"en": "Background color",
+		"fr": "Couleur de fond"
+	},
+	"gofqzm4": {
+		"zh-cn": "背景色1",
+		"ja": "背景色1",
+		"ko": "배경색 1",
+		"ru": "Фоновый цвет.",
+		"en": "Background color 1",
+		"fr": "Couleur de fond 1"
+	},
+	"gofqzn4": {
+		"zh-cn": "背景色2",
+		"ja": "背景色2",
+		"ko": "배경색 2",
+		"ru": "Задний цвет 2.",
+		"en": "Background color 2",
+		"fr": "Couleur de fond 2"
+	},
+	"gofqzo4": {
+		"zh-cn": "背景色3",
+		"ja": "背景色3",
+		"ko": "배경색 3",
+		"ru": "Фоновый цвет 3.",
+		"en": "Background color 3",
+		"fr": "Couleur de fond 3"
+	},
+	"fblqa3": {
+		"zh-cn": "文字色",
+		"ja": "テキスト色",
+		"ko": "텍스트 색상",
+		"ru": "Цвет слов.",
+		"en": "Text color",
+		"fr": "Couleur du texte"
+	},
+	"d6zpnz4": {
+		"zh-cn": "文字色1",
+		"ja": "テキスト色1",
+		"ko": "텍스트 색상 1",
+		"ru": "Цвет слова 1.",
+		"en": "Text Color 1",
+		"fr": "Couleur du texte 1"
+	},
+	"d6zpo04": {
+		"zh-cn": "文字色2",
+		"ja": "テキスト色2",
+		"ko": "텍스트 색상 2",
+		"ru": "Цвет слова 2",
+		"en": "Text Color 2",
+		"fr": "Couleur du texte 2"
+	},
+	"d6zpo14": {
+		"zh-cn": "文字色3",
+		"ja": "テキスト色3",
+		"ko": "텍스트 색상 3",
+		"ru": "Цвет слова 3.",
+		"en": "Text Color 3",
+		"fr": "Couleur du texte 3"
+	},
+	"aushbt4": {
+		"zh-cn": "占位符色",
+		"ja": "プレースホルダー色",
+		"ko": "자리 표시자 색상입니다",
+		"ru": "цвета",
+		"en": "Placeholder color",
+		"fr": "Espace réservé couleur"
+	},
+	"lkaqt3": {
+		"zh-cn": "边框色",
+		"ja": "枠線色",
+		"ko": "경계선 색",
+		"ru": "Цвет рамки.",
+		"en": "Border color",
+		"fr": "Couleur du cadre"
+	},
+	"ikh94c4": {
+		"zh-cn": "边框色1",
+		"ja": "枠線色1",
+		"ko": "테두리 색 1",
+		"ru": "Цвет рамки 1",
+		"en": "Border color 1",
+		"fr": "Couleur de bord 1"
+	},
+	"ikh94d4": {
+		"zh-cn": "边框色2",
+		"ja": "枠線色2",
+		"ko": "테두리 색 2",
+		"ru": "Второй цвет",
+		"en": "Border color 2",
+		"fr": "Couleur du cadre 2"
+	},
+	"ek4si3": {
+		"zh-cn": "悬停色",
+		"ja": "ホバー色",
+		"ko": "지나다니는 색",
+		"ru": "Висячий цвет.",
+		"en": "Hover color",
+		"fr": "Survolez la couleur"
+	},
+	"xi530f5": {
+		"zh-cn": "悬停背景色",
+		"ja": "ホバー背景色",
+		"ko": "지나가기 배경색",
+		"ru": "Подвешенный фоновый цвет",
+		"en": "Hover over the background color",
+		"fr": "Survolez la couleur de fond"
+	},
+	"gwjtj3": {
+		"zh-cn": "激活色",
+		"ja": "アクティブ色",
+		"ko": "활성화 색",
+		"ru": "Цвет активации.",
+		"en": "Activation color",
+		"fr": "Activer la couleur"
+	},
+	"ek15ji4": {
+		"zh-cn": "激活线色",
+		"ja": "アクティブライン色",
+		"ko": "줄색 활성화",
+		"ru": "Активационный линейный цвет",
+		"en": "Activation line color",
+		"fr": "Activez la couleur de ligne"
+	},
+	"lhi9a3": {
+		"zh-cn": "选中色",
+		"ja": "選択色",
+		"ko": "색 선택",
+		"ru": "Выбери цвет.",
+		"en": "Selected color",
+		"fr": "Choisissez la couleur"
+	},
+	"5bpdyj5": {
+		"zh-cn": "选中背景色",
+		"ja": "選択背景色",
+		"ko": "배경색 선택",
+		"ru": "Выбери фоновый цвет.",
+		"en": "Select the background color",
+		"fr": "Sélectionnez la couleur d’arrière-plan"
+	},
+	"af0mnq4": {
+		"zh-cn": "主色透明",
+		"ja": "メインカラーの透明度",
+		"ko": "주색 투명도",
+		"ru": "Прозрачность главного цвета",
+		"en": "The main color is transparent",
+		"fr": "Couleur principale transparent"
+	},
+	"kpqd43": {
+		"zh-cn": "表面色",
+		"ja": "サーフェス色",
+		"ko": "표면색",
+		"ru": "Поверхностный цвет",
+		"en": "Surface color",
+		"fr": "Couleur de surface"
+	},
+	"htxpwe4": {
+		"zh-cn": "表面低色",
+		"ja": "サーフェス（低）",
+		"ko": "표면 낮은 색",
+		"ru": "Низкий цвет поверхности",
+		"en": "Low surface color",
+		"fr": "Couleur basse de surface"
+	},
+	"fgf6jn5": {
+		"zh-cn": "表面变体色",
+		"ja": "サーフェスバリアント色",
+		"ko": "표면 변색색",
+		"ru": "Изменение цвета поверхности",
+		"en": "Surface variant color",
+		"fr": "Variante de surface couleur"
+	},
+	"lh59p3": {
+		"zh-cn": "轮廓色",
+		"ja": "アウトライン色",
+		"ko": "윤곽색",
+		"ru": "Силуэт.",
+		"en": "Outline color",
+		"fr": "Couleur du profil"
+	},
+	"eyx12": {
+		"zh-cn": "反色",
+		"ja": "反転色",
+		"ko": "반 색",
+		"ru": "Прот цвет",
+		"en": "Reverse color",
+		"fr": "Lutte contre la couleur"
+	},
+	"jw3yfv5": {
+		"zh-cn": "内联代码色",
+		"ja": "インラインコード色",
+		"ko": "인라인 코드 색상",
+		"ru": "Внутренний код",
+		"en": "Inline code color",
+		"fr": "Code en ligne couleur"
+	},
+	"mipfg3": {
+		"zh-cn": "错误色",
+		"ja": "エラー色",
+		"ko": "오류 색상",
+		"ru": "Неправильный цвет.",
+		"en": "Wrong color",
+		"fr": "Couleur de l’erreur"
+	},
+	"jvmjdu5": {
+		"zh-cn": "内联区域色",
+		"ja": "インライン領域色",
+		"ko": "내부 영역 색",
+		"ru": "Цвет внутренней зоны",
+		"en": "Inline area color",
+		"fr": "Couleur régionale en ligne"
+	},
+	"6rxink6": {
+		"zh-cn": " 确认关闭 ",
+		"ja": "閉じることを確認",
+		"ko": "닫기 확인",
+		"ru": "Подтверждаю.",
+		"en": "Confirm closure",
+		"fr": "Confirmer la fermeture"
+	},
+	"r0w7pp7": {
+		"zh-cn": " 文件已存在 ",
+		"ja": "ファイルはすでに存在します",
+		"ko": "파일이 이미 존재합니다",
+		"ru": "Файл уже существует.",
+		"en": "The file already exists.",
+		"fr": "Le fichier existe déjà"
+	},
+	"dpvra65": {
+		"zh-cn": " 文档 ",
+		"ja": "ドキュメント",
+		"ko": "문서",
+		"ru": "Документы .",
+		"en": "Document",
+		"fr": "La documentation"
+	},
+	"qclwb9h": {
+		"zh-cn": " 有未保存的修改，请选择操作： ",
+		"ja": "未保存の変更があります。操作を選択してください：",
+		"ko": "저장되지 않은 변경 사항이 있습니다. 작업을 선택하십시오:",
+		"ru": "С несохраненными изменениями выберите операцию:",
+		"en": "There are unsaved modifications. Please select the operation:",
+		"fr": "Il y a des modifications non enregistrées, veuillez sélectionner une action:"
+	},
+	"fsr2hpk": {
+		"zh-cn": " 当前文档有未保存的修改，请选择操作： ",
+		"ja": "現在のドキュメントに未保存の変更があります。操作を選択してください：",
+		"ko": "현재 문서에 저장되지 않은 변경 사항이 있습니다. 동작을 선택하십시오:",
+		"ru": "В настоящем документе есть несохраненные модификации, пожалуйста, выберите операцию:",
+		"en": "There are unsaved modifications in the current document. Please select the operation:",
+		"fr": "Le document actuel contient des modifications non enregistrées. Veuillez sélectionner une action:"
+	},
+	"dm5os15": {
+		"zh-cn": " 文件 ",
+		"ja": "ファイル",
+		"ko": "파일",
+		"ru": "Документы.",
+		"en": "File",
+		"fr": "Le dossier"
+	},
+	"9aaxenh": {
+		"zh-cn": " 已存在，是否要覆盖当前内容？ ",
+		"ja": "すでに存在します。現在の内容を上書きしますか？",
+		"ko": "존재합니다. 현재 내용을 덮어쓰시겠습니까?",
+		"ru": "Существую.",
+		"en": "It already exists. Do you want to overwrite the current content?",
+		"fr": "Existe-t-il, voulez-vous écraser le contenu actuel?"
+	},
+	"ki9ekwi": {
+		"zh-cn": " 文件已存在，是否要覆盖当前内容？ ",
+		"ja": "ファイルはすでに存在します。現在の内容を上書きしますか？",
+		"ko": "파일이 이미 존재합니다. 현재 내용을 덮어쓰시겠습니까?",
+		"ru": "Файл уже существует.",
+		"en": "The file already exists. Do you want to overwrite the current content?",
+		"fr": "Le fichier existe déjà. Voulez-vous écraser le contenu actuel?"
+	},
+	"cgl4v4": {
+		"zh-cn": " 丢弃 ",
+		"ja": "破棄",
+		"ko": "버 려 진",
+		"ru": "выброш",
+		"en": "Discard",
+		"fr": "Les rejets"
+	},
+	"cp35x4": {
+		"zh-cn": " 保存 ",
+		"ja": "保存",
+		"ko": "저장",
+		"ru": "сохран",
+		"en": "Save",
+		"fr": "La conservation"
+	},
+	"dd4ni4": {
+		"zh-cn": " 取消 ",
+		"ja": "キャンセル",
+		"ko": "취소",
+		"ru": "отмен",
+		"en": "Cancel",
+		"fr": "La suppression des"
+	},
+	"l9sz44": {
+		"zh-cn": " 覆盖 ",
+		"ja": "上書き",
+		"ko": "커버",
+		"ru": "покр",
+		"en": "Cover",
+		"fr": "La couverture"
+	},
+	"gvdb3": {
+		"zh-cn": " 字符",
+		"ja": "文字",
+		"ko": "문자",
+		"ru": "символ",
+		"en": "Character",
+		"fr": "caractères"
+	},
+	"ros2": {
+		"zh-cn": " 行",
+		"ja": "行",
+		"ko": "행",
+		"ru": ".",
+		"en": "line",
+		"fr": "La ligne"
+	},
+	"ft7rl4": {
+		"zh-cn": " 文件 ",
+		"ja": "ファイル",
+		"ko": "파일",
+		"ru": "документ",
+		"en": "File",
+		"fr": "Le document"
+	},
+	"e82yd4": {
+		"zh-cn": " 大纲 ",
+		"ja": "アウトライン",
+		"ko": "대강",
+		"ru": "наброск",
+		"en": "Outline",
+		"fr": "l’esquisse"
+	},
+	"dcrppu4": {
+		"zh-cn": "暂无内容",
+		"ja": "コンテンツはありません",
+		"ko": "잠시 내용 없음",
+		"ru": "Пока ничего.",
+		"en": "There is no content for now.",
+		"fr": "Pas encore de contenu"
+	},
+	"cu3jbj8": {
+		"zh-cn": "暂无打开的文件夹",
+		"ja": "開いているフォルダーはありません",
+		"ko": "열려 있는 폴더가 없습니다",
+		"ru": "Папку, которую пока не открыли",
+		"en": "There are no open folders for the moment",
+		"fr": "Aucun dossier ouvert pour le moment"
+	},
+	"1zj6467": {
+		"zh-cn": " 选择文件夹 ",
+		"ja": "フォルダーを選択",
+		"ko": "폴더 선택",
+		"ru": "Избирательная папка",
+		"en": "Select the folder",
+		"fr": "Choisissez un dossier"
+	},
+	"hu2t2": {
+		"zh-cn": "文本",
+		"ja": "テキスト",
+		"ko": "텍스트",
+		"ru": "текст",
+		"en": "Text",
+		"fr": "Le texte"
+	},
+	"ad8fa04": {
+		"zh-cn": "一级标题",
+		"ja": "見出し1",
+		"ko": "제목 1단계",
+		"ru": "Первый титул",
+		"en": "First-level title",
+		"fr": "Titre niveau 1"
+	},
+	"afptfw4": {
+		"zh-cn": "二级标题",
+		"ja": "見出し2",
+		"ko": "제목 단계 2",
+		"ru": "Вторичный титул",
+		"en": "Secondary title",
+		"fr": "Le titre secondaire"
+	},
+	"ade65r4": {
+		"zh-cn": "三级标题",
+		"ja": "見出し3",
+		"ko": "제목 단계 3",
+		"ru": "Заголовок третьего уровня",
+		"en": "Third-level headings",
+		"fr": "Titres au troisième niveau"
+	},
+	"bhfyjh4": {
+		"zh-cn": "四级标题",
+		"ja": "見出し4",
+		"ko": "제목 단계 4",
+		"ru": "Четвертый уровень.",
+		"en": "Level Four Title",
+		"fr": "Titre de niveau 4"
+	},
+	"afuxc44": {
+		"zh-cn": "五级标题",
+		"ja": "見出し5",
+		"ko": "단계 5",
+		"ru": "Заголовок пятого уровня",
+		"en": "Five-level title",
+		"fr": "Cinq titres de niveau"
+	},
+	"asserv4": {
+		"zh-cn": "六级标题",
+		"ja": "見出し6",
+		"ko": "제목 단계 6",
+		"ru": "Шестой уровень.",
+		"en": "Cet-6 Title",
+		"fr": "Titres de six niveaux"
+	},
+	"gtdf2": {
+		"zh-cn": "引用",
+		"ja": "引用",
+		"ko": "인용",
+		"ru": "цитир",
+		"en": "Quoted",
+		"fr": "références"
+	},
+	"cf85v3": {
+		"zh-cn": "分割线",
+		"ja": "区切り線",
+		"ko": "분할선",
+		"ru": "Разделитель.",
+		"en": "Dividing line",
+		"fr": "Ligne de division"
+	},
+	"epm92": {
+		"zh-cn": "列表",
+		"ja": "リスト",
+		"ko": "목록",
+		"ru": "список",
+		"en": "List",
+		"fr": "La liste"
+	},
+	"d8u1b44": {
+		"zh-cn": "无序列表",
+		"ja": "箇条書き",
+		"ko": "순서가 지정되지 않은 목록",
+		"ru": "Беспорядочный список",
+		"en": "Unordered list",
+		"fr": "Liste non ordonnée"
+	},
+	"de3oev4": {
+		"zh-cn": "有序列表",
+		"ja": "番号付きリスト",
+		"ko": "순서 목록",
+		"ru": "Упорядоченный список",
+		"en": "Ordered list",
+		"fr": "La liste ordonnée"
+	},
+	"ab4qlz4": {
+		"zh-cn": "任务列表",
+		"ja": "タスクリスト",
+		"ko": "작업 목록",
+		"ru": "Список заданий.",
+		"en": "Task list",
+		"fr": "Liste des tâches"
+	},
+	"r1732": {
+		"zh-cn": "高级",
+		"ja": "詳細",
+		"ko": "고급",
+		"ru": "старш",
+		"en": "Advanced",
+		"fr": "haut"
+	},
+	"ff9l2": {
+		"zh-cn": "图片",
+		"ja": "画像",
+		"ko": "사진",
+		"ru": "картинк",
+		"en": "Picture",
+		"fr": "photo"
+	},
+	"c4uxl3": {
+		"zh-cn": "代码块",
+		"ja": "コードブロック",
+		"ko": "코드 블록",
+		"ru": "Блок кода.",
+		"en": "Code block",
+		"fr": "Bloc de code"
+	},
+	"nrv82": {
+		"zh-cn": "表格",
+		"ja": "表",
+		"ko": "도표",
+		"ru": "форм",
+		"en": "Table",
+		"fr": "Le formulaire"
+	},
+	"edcz2": {
+		"zh-cn": "公式",
+		"ja": "数式",
+		"ko": "공식",
+		"ru": "формул",
+		"en": "Formula",
+		"fr": "La formule"
+	},
+	"cwz3vi4": {
+		"zh-cn": "控制字符",
+		"ja": "制御文字",
+		"ko": "제어 문자",
+		"ru": "Символ управления",
+		"en": "Control character",
+		"fr": "Caractères de contrôle"
+	},
+	"7snk525": {
+		"zh-cn": "选择已删除",
+		"ja": "選択範囲を削除",
+		"ko": "선택이 삭제됨",
+		"ru": "Выбор удален.",
+		"en": "Selected Deleted",
+		"fr": "Sélection a été supprimée"
+	},
+	"c9fetu4": {
+		"zh-cn": "已折叠行",
+		"ja": "行を折りたたみ",
+		"ko": "접은 줄",
+		"ru": "Сложенная строка",
+		"en": "Folded rows",
+		"fr": "Lignes déjà pliées"
+	},
+	"c8kab34": {
+		"zh-cn": "已展开行",
+		"ja": "行を展開",
+		"ko": "확장된 줄",
+		"ru": "Разворачиваемся.",
+		"en": "The journey has already begun.",
+		"fr": "La ligne a été lancée"
+	},
+	"g8g1": {
+		"zh-cn": "到",
+		"ja": "から",
+		"ko": "까지",
+		"ru": "до",
+		"en": "to",
+		"fr": "à"
+	},
+	"oygdyw5": {
+		"zh-cn": "已折叠代码",
+		"ja": "コードを折りたたみ",
+		"ko": "접은 코드",
+		"ru": "Сложенный код",
+		"en": "Folded code",
+		"fr": "Le code a été plié"
+	},
+	"g85n2": {
+		"zh-cn": "展开",
+		"ja": "展開",
+		"ko": "벌",
+		"ru": "нача",
+		"en": "Unfold",
+		"fr": "l’ouverture"
+	},
+	"euwas3": {
+		"zh-cn": "折叠行",
+		"ja": "行を折りたたみ",
+		"ko": "줄 접기",
+		"ru": "Складывай.",
+		"en": "Folded rows",
+		"fr": "Plier la ligne"
+	},
+	"dzrs13": {
+		"zh-cn": "展开行",
+		"ja": "行を展開",
+		"ko": "줄 펴기",
+		"ru": "Разворачивай.",
+		"en": "Expand the line",
+		"fr": "Développer la ligne"
+	},
+	"ihybw54": {
+		"zh-cn": "跳转到行",
+		"ja": "行に移動",
+		"ko": "줄로 가기",
+		"ru": "Прыгай в линию",
+		"en": "Jump to a row",
+		"fr": "Aller à la ligne"
+	},
+	"kzjg2": {
+		"zh-cn": "确定",
+		"ja": "OK",
+		"ko": "확정",
+		"ru": "увер",
+		"en": "Sure",
+		"fr": "déterminer"
+	},
+	"i7nd2": {
+		"zh-cn": "查找",
+		"ja": "検索",
+		"ko": "찾기",
+		"ru": "поиск",
+		"en": "Search",
+		"fr": "find"
+	},
+	"fkfh33": {
+		"zh-cn": "替换为",
+		"ja": "置換後",
+		"ko": "다음으로 바꾸기",
+		"ru": "Заменить на",
+		"en": "Replace with",
+		"fr": "Remplacer par"
+	},
+	"bt7qt3": {
+		"zh-cn": "下一个",
+		"ja": "次へ",
+		"ko": "다음",
+		"ru": "Следующий.",
+		"en": "Next",
+		"fr": "Le prochain"
+	},
+	"bt7043": {
+		"zh-cn": "上一个",
+		"ja": "前へ",
+		"ko": "이전",
+		"ru": "Последний.",
+		"en": "Previous one",
+		"fr": "Précédent suivant suivant"
+	},
+	"en402": {
+		"zh-cn": "全部",
+		"ja": "すべて",
+		"ko": "전부",
+		"ru": "все",
+		"en": "All",
+		"fr": "La totalité des"
+	},
+	"j0ptq35": {
+		"zh-cn": "区分大小写",
+		"ja": "大文字と小文字を区別",
+		"ko": "대소문자를 구분하다",
+		"ru": "Отличать большие буквы от маленьких",
+		"en": "Case-sensitive",
+		"fr": "Sensible aux majuscules"
+	},
+	"anffqb4": {
+		"zh-cn": "全字匹配",
+		"ja": "完全一致",
+		"ko": "전체 단어 일치",
+		"ru": "Полное совпадение слов",
+		"en": "Full-character matching",
+		"fr": "Match de mot complet"
+	},
+	"i2bn2": {
+		"zh-cn": "替换",
+		"ja": "置換",
+		"ko": "교체",
+		"ru": "замен",
+		"en": "Replacement",
+		"fr": "remplacer"
+	},
+	"demnsz4": {
+		"zh-cn": "替换全部",
+		"ja": "すべて置換",
+		"ko": "모두 바꾸기",
+		"ru": "Заменить все.",
+		"en": "Replace all",
+		"fr": "Remplacer tous les"
+	},
+	"eod62": {
+		"zh-cn": "关闭",
+		"ja": "閉じる",
+		"ko": "닫기",
+		"ru": "закр",
+		"en": "Close",
+		"fr": "La fermeture"
+	},
+	"cdau4u4": {
+		"zh-cn": "当前匹配",
+		"ja": "現在の一致",
+		"ko": "현재 일치",
+		"ru": "Текущее совпадение.",
+		"en": "Current match",
+		"fr": "Les matchs actuels"
+	},
+	"t7fijma": {
+		"zh-cn": "已替换 $ 个匹配项",
+		"ja": "$ 件を置換しました",
+		"ko": "일치 $하나가 대체되었습니다",
+		"ru": "Было заменено на доллар",
+		"en": "$matches have been replaced",
+		"fr": "$matchs ont été remplacés"
+	},
+	"vnnbhqb": {
+		"zh-cn": "在第 $ 行替换匹配项",
+		"ja": "$ 行目の一致を置換",
+		"ko": "$줄에서 일치 항목을 바꿉니다",
+		"ru": "Замена в первой строке",
+		"en": "Replace the match in line $",
+		"fr": "Remplacer les correspondances sur la ligne $"
+	},
+	"fkmc2": {
+		"zh-cn": "在行",
+		"ja": "行",
+		"ko": "전문가",
+		"ru": "получа",
+		"en": "Doing it",
+		"fr": "les"
+	},
+	"gqnjfl4": {
+		"zh-cn": "自动补全",
+		"ja": "自動補完",
+		"ko": "자동 완성",
+		"ru": "Автоматическое пополнение",
+		"en": "Auto-completion",
+		"fr": "Remplissage automatique complet"
+	},
+	"i20hld4": {
+		"zh-cn": "诊断信息",
+		"ja": "診断情報",
+		"ko": "진단 정보",
+		"ru": "Диагностическая информация",
+		"en": "Diagnostic information",
+		"fr": "Informations sur diagnostic"
+	},
+	"9stjbj5": {
+		"zh-cn": "无诊断信息",
+		"ja": "診断情報はありません",
+		"ko": "진단 정보 없음",
+		"ru": "Диагностики нет.",
+		"en": "No diagnostic information",
+		"fr": "Aucune information de diagnostic"
+	},
+	"ipsm2": {
+		"zh-cn": "正则",
+		"ja": "正規表現",
+		"ko": "정규 표현",
+		"ru": "регулярн",
+		"en": "Regular expression",
+		"fr": "correction"
+	},
+	"d5khix4": {
+		"zh-cn": "搜索语言",
+		"ja": "検索言語",
+		"ko": "검색 언어",
+		"ru": "Язык поиска",
+		"en": "Search language",
+		"fr": "Recherche par langue"
+	},
+	"dcsaqa4": {
+		"zh-cn": "暂无匹配",
+		"ja": "一致がありません",
+		"ko": "현재 일치하는 것 없음",
+		"ru": "Пока совпадений нет.",
+		"en": "No match for now",
+		"fr": "Pas encore de match"
+	},
+	"fljd2": {
+		"zh-cn": "复制",
+		"ja": "コピー",
+		"ko": "복사",
+		"ru": "скопирова",
+		"en": "Copy",
+		"fr": "La reproduction"
+	},
+	"bkv2mw4": {
+		"zh-cn": "复制成功",
+		"ja": "コピーしました",
+		"ko": "복사에 성공했습니다",
+		"ru": "Подтверждаю.",
+		"en": "Copy successfully",
+		"fr": "Copiez avec succès"
+	},
+	"ibykxya": {
+		"zh-cn": "开始写点什么吧...",
+		"ja": "何か書き始めましょう...",
+		"ko": "글을 쓰기 시작합시다...",
+		"ru": "Начинай писать.",
+		"en": "Let's start writing something...",
+		"fr": "Commencez à écrire quelque chose..."
+	},
+	"ek1v7v7": {
+		"zh-cn": "编辑器默认字体",
+		"ja": "エディターのデフォルトフォント",
+		"ko": "편집기 기본 글꼴입니다",
+		"ru": "Шрифт редактора по умолчанию",
+		"en": "The default font of the editor",
+		"fr": "Éditeur de polices par défaut"
+	},
+	"yr9hwa6": {
+		"zh-cn": "代码默认字体",
+		"ja": "コードのデフォルトフォント",
+		"ko": "코드 기본 글꼴",
+		"ru": "Шрифт по умолчанию кода",
+		"en": "Default font of the code",
+		"fr": "Code police par défaut"
+	},
+	"i5pctl5": {
+		"zh-cn": "编辑器字体",
+		"ja": "エディターフォント",
+		"ko": "편집기 글꼴",
+		"ru": "Шрифт редактора",
+		"en": "Editor font",
+		"fr": "Les polices de l’éditeur"
+	},
+	"6xn2laa": {
+		"zh-cn": "用于文本编辑器的字体",
+		"ja": "テキストエディター用フォント",
+		"ko": "텍스트 편집기에 사용할 글꼴입니다",
+		"ru": "Шрифт для текстового редактора",
+		"en": "Fonts used for text editors",
+		"fr": "Polices pour les éditeurs de texte"
+	},
+	"ag7r2y4": {
+		"zh-cn": "代码字体",
+		"ja": "コードフォント",
+		"ko": "코드 글꼴",
+		"ru": "Кодовый шрифт",
+		"en": "Code font",
+		"fr": "Code de police"
+	},
+	"pa564g9": {
+		"zh-cn": "用于代码显示的字体",
+		"ja": "コード表示用フォント",
+		"ko": "코드 표시를 위한 글꼴입니다",
+		"ru": "Используется для отображения шрифтов кода",
+		"en": "Fonts used for code display",
+		"fr": "Polices pour l’affichage du code"
+	},
+	"v03jjj9": {
+		"zh-cn": "获取目录文件失败:",
+		"ja": "ディレクトリファイルの取得に失敗:",
+		"ko": "디렉터리 파일을 가져오는 데 실패했습니다:",
+		"ru": "Доступ к файлам каталога не удался:",
+		"en": "Failed to obtain the directory file",
+		"fr": "Impossible d’obtenir le fichier répertoire:"
+	},
+	"p91dj48": {
+		"zh-cn": "选择文件夹文件夹",
+		"ja": "フォルダーを選択",
+		"ko": "폴더 폴더 선택",
+		"ru": "Избирательная папка",
+		"en": "Select Folder Folder",
+		"fr": "Sélectionner un dossier dossier"
+	},
+	"hpan2": {
+		"zh-cn": "文件",
+		"ja": "ファイル",
+		"ko": "파일",
+		"ru": "документ",
+		"en": "File",
+		"fr": "Le document"
+	},
+	"ogvk2": {
+		"zh-cn": "设置",
+		"ja": "設定",
+		"ko": "설정",
+		"ru": "настройк",
+		"en": "Settings",
+		"fr": "La mise en place"
+	},
+	"fwq42": {
+		"zh-cn": "外观",
+		"ja": "外観",
+		"ko": "외관",
+		"ru": "Внешн вид",
+		"en": "Appearance",
+		"fr": "l’aspect"
+	},
+	"ok372": {
+		"zh-cn": "语言",
+		"ja": "言語",
+		"ko": "언어",
+		"ru": "язык",
+		"en": "Language",
+		"fr": "Langue (S)"
+	},
+	"ea9n2": {
+		"zh-cn": "关于",
+		"ja": "このアプリについて",
+		"ko": "관",
+		"ru": "о",
+		"en": "About",
+		"fr": "En ce qui concerne"
+	},
+	"fyzg2": {
+		"zh-cn": "字体",
+		"ja": "フォント",
+		"ko": "글꼴",
+		"ru": "шрифт",
+		"en": "Font",
+		"fr": "caractères"
+	},
+	"e56l2": {
+		"zh-cn": "主题",
+		"ja": "テーマ",
+		"ko": "테마",
+		"ru": "тем",
+		"en": "Theme",
+		"fr": "Le thème"
+	},
+	"ctwv0i4": {
+		"zh-cn": "拼写检查",
+		"ja": "スペルチェック",
+		"ko": "맞춤법 검사",
+		"ru": "Проверка орфографии.",
+		"en": "Spell check",
+		"fr": "Vérification orthographique"
+	},
+	"nxm8g26": {
+		"zh-cn": "当图片粘贴时",
+		"ja": "画像を貼り付けたとき",
+		"ko": "그림이 붙여질 때",
+		"ru": "Когда фотография была приклеена",
+		"en": "When the picture is pasted",
+		"fr": "Lorsque l’image est collée"
+	},
+	"b1em0i4": {
+		"zh-cn": "取消选择",
+		"ja": "選択解除",
+		"ko": "선택 해제",
+		"ru": "Отмени.",
+		"en": "Unselect",
+		"fr": "Annuler la sélection"
+	},
+	"fc5o5x5": {
+		"zh-cn": "导出的文件",
+		"ja": "エクスポートしたファイル",
+		"ko": "내보낸 파일",
+		"ru": "Экспортируемые документы",
+		"en": "The exported file",
+		"fr": "Un fichier exporté"
+	},
+	"by5dal4": {
+		"zh-cn": "导出成功",
+		"ja": "エクスポート成功",
+		"ko": "성공적으로 내보내기",
+		"ru": "Удачное извлечение.",
+		"en": "Export successful",
+		"fr": "Succès de l’exportation"
+	},
+	"pamgy06": {
+		"zh-cn": "导出失败: ",
+		"ja": "エクスポート失敗:",
+		"ko": "내보내기 실패:",
+		"ru": "Производственная ошибка:",
+		"en": "Export failed",
+		"fr": "L’exportation a échoué:"
+	},
+	"h8ul2": {
+		"zh-cn": "打开",
+		"ja": "開く",
+		"ko": "열어",
+		"ru": "откр",
+		"en": "Open",
+		"fr": "ouvrir"
+	},
+	"tc0tib5": {
+		"zh-cn": "打开文件夹",
+		"ja": "フォルダーを開く",
+		"ko": "폴더 열기",
+		"ru": "Откройте папку.",
+		"en": "Open the folder",
+		"fr": "Ouvrir un dossier"
+	},
+	"e32z2": {
+		"zh-cn": "保存",
+		"ja": "保存",
+		"ko": "저장",
+		"ru": "сохран",
+		"en": "Save",
+		"fr": "La conservation"
+	},
+	"e5ggd3": {
+		"zh-cn": "已保存",
+		"ja": "保存済み",
+		"ko": "저장됨",
+		"ru": "Сохранена.",
+		"en": "Saved",
+		"fr": "A été sauvegardé"
+	},
+	"cqczs3": {
+		"zh-cn": "另存为",
+		"ja": "名前を付けて保存",
+		"ko": "다른 이름으로 저장",
+		"ru": "Сохраните.",
+		"en": "Save as",
+		"fr": "Enregistrer sous"
+	},
+	"dvekc3": {
+		"zh-cn": "导出为",
+		"ja": "形式を指定してエクスポート",
+		"ko": "다음으로 내보내기",
+		"ru": "экспортировать",
+		"en": "Export as",
+		"fr": "Exporter comme"
+	},
+	"dure2": {
+		"zh-cn": "中文",
+		"ja": "中文",
+		"ko": "中文",
+		"ru": "中文",
+		"en": "中文",
+		"fr": "中文"
+	},
+	"i3l42": {
+		"zh-cn": "日本語",
+		"ja": "日本語",
+		"ko": "日本語",
+		"ru": "日本語",
+		"en": "日本語",
+		"fr": "日本語"
+	},
+	"qlus2": {
+		"zh-cn": "한국어",
+		"ja": "한국어",
+		"ko": "한국어",
+		"ru": "한국어",
+		"en": "한국어",
+		"fr": "한국어"
+	},
+	"ec2x2": {
+		"zh-cn": "Русский язык",
+		"ja": "Русский язык",
+		"ko": "Русский язык",
+		"ru": "Русский язык",
+		"en": "Русский язык",
+		"fr": "Русский язык"
+	},
+	"n1gc2": {
+		"zh-cn": "English",
+		"ja": "English",
+		"ko": "English",
+		"ru": "English",
+		"en": "English",
+		"fr": "English"
+	},
+	"ja2g2": {
+		"zh-cn": "En français",
+		"ja": "En français",
+		"ko": "En français",
+		"ru": "En français",
+		"en": "En français",
+		"fr": "En français"
+	},
+	"i88q5f4": {
+		"zh-cn": "语言设置",
+		"ja": "言語設定",
+		"ko": "언어 설정",
+		"ru": "Настройка языка",
+		"en": "Language Settings",
+		"fr": "Paramètres de langue"
+	},
+	"xv0cqfc": {
+		"zh-cn": " 选择您偏好的界面语言 ",
+		"ja": "希望する表示言語を選択",
+		"ko": "선호하는 인터페이스 언어를 선택하십시오",
+		"ru": "Выберите язык интерфейса, который предпочитаете",
+		"en": "Select your preferred interface language",
+		"fr": "Choisissez votre langue d’interface préférée"
+	},
+	"cdkfwt4": {
+		"zh-cn": "当前语言",
+		"ja": "現在の言語",
+		"ko": "현재 언어",
+		"ru": "Текущий язык",
+		"en": "Current language",
+		"fr": "La langue actuelle"
+	},
+	"i7yc1d4": {
+		"zh-cn": "语言代码",
+		"ja": "言語コード",
+		"ko": "언어 코드",
+		"ru": "Код языка",
+		"en": "Language code",
+		"fr": "Code de langue"
+	},
+	"k90dbmj": {
+		"zh-cn": " milkup 是完全免费开源的软件 ",
+		"ja": "milkup は完全無料のオープンソースソフトウェアです",
+		"ko": "밀크업 (milkup)은 완전 무료 오픈 소스 소프트웨어이다",
+		"ru": "milkup — программа с открытым исходным кодом",
+		"en": "milkup is completely free and open-source software",
+		"fr": "Milkup est un logiciel entièrement gratuit et open source"
+	},
+	"chx6u4": {
+		"zh-cn": " 中文 ",
+		"ja": "中国語",
+		"ko": "중국어",
+		"ru": "китайск",
+		"en": "Chinese",
+		"fr": "chinois"
+	},
+	"ddq5eb4": {
+		"zh-cn": "本地文件",
+		"ja": "ローカルファイル",
+		"ko": "로컬 파일",
+		"ru": "Местные документы.",
+		"en": "Local file",
+		"fr": "Le fichier local"
+	},
+	"et5dr9": {
+		"zh-cn": "转为 Base64",
+		"ja": "Base64に変換",
+		"ko": "베이스 64로 변경",
+		"ru": "Переключись на Base64",
+		"en": "Convert to Base64",
+		"fr": "Passer à Base64"
+	},
+	"dphy2": {
+		"zh-cn": "上传",
+		"ja": "アップロード",
+		"ko": "업로드",
+		"ru": "загрузк",
+		"en": "Upload",
+		"fr": "télécharger"
+	},
+	"2uctc86": {
+		"zh-cn": "本地文件路径",
+		"ja": "ローカルファイルのパス",
+		"ko": "로컬 파일 경로",
+		"ru": "Локальный путь файла",
+		"en": "Local file path",
+		"fr": "Chemin du fichier local"
+	},
+	"wp1myzr": {
+		"zh-cn": " 图片将自动转为 base64（可能会增大文件体积） ",
+		"ja": "画像は自動でbase64に変換されます（ファイルサイズが大きくなる場合があります）",
+		"ko": "이미지가 자동으로 base64로 변환됩니다 (파일 크기를 늘릴 수도 있음)",
+		"ru": "Изображение автоматически переключается на base64 (может увеличить объем файла).",
+		"en": "The image will be automatically converted to base64 (which may increase the file size)",
+		"fr": "L’image sera automatiquement convertie en base64 (peut augmenter la taille du fichier)"
+	},
+	"k3v68r6": {
+		"zh-cn": "启用拼写检查",
+		"ja": "スペルチェックを有効化",
+		"ko": "맞춤법 검사 사용하기",
+		"ru": "Начинаю проверку орфографии",
+		"en": "Enable spell check",
+		"fr": "Activer la vérification orthographique"
+	},
+	"gmgx884": {
+		"zh-cn": "编辑主题",
+		"ja": "テーマを編集",
+		"ko": "테마 편집",
+		"ru": "Редактировать тему",
+		"en": "Edit theme",
+		"fr": "Modifier le thème"
+	},
+	"afru334": {
+		"zh-cn": "下载主题",
+		"ja": "テーマをダウンロード",
+		"ko": "테마 다운로드",
+		"ru": "Загрузка.",
+		"en": "Download the theme",
+		"fr": "Télécharger le thème"
+	},
+	"azbhmp4": {
+		"zh-cn": "删除主题",
+		"ja": "テーマを削除",
+		"ko": "테마 삭제",
+		"ru": "Удали тему.",
+		"en": "Delete the topic",
+		"fr": "Supprimer un sujet"
+	},
+	"e7vhc24": {
+		"zh-cn": "添加主题",
+		"ja": "テーマを追加",
+		"ko": "테마 추가",
+		"ru": "Добавьте тему.",
+		"en": "Add a theme",
+		"fr": "Ajouter un sujet"
+	},
+	"2dr5xr7": {
+		"zh-cn": "或拖入主题文件",
+		"ja": "またはテーマファイルをドラッグ",
+		"ko": "테마 파일을 드래그합니다",
+		"ru": "Или занести в основной файл",
+		"en": "Or drag it into the theme file",
+		"fr": "Ou glisser dans le fichier sujet"
+	},
+	"wt0qnqa": {
+		"zh-cn": "创建或导入自定义主题",
+		"ja": "カスタムテーマを作成またはインポート",
+		"ko": "사용자 정의 테마를 만들거나 가져옵니다",
+		"ru": "Создание или импортирование в определенную тему",
+		"en": "Create or import custom themes",
+		"fr": "Créer ou importer un thème personnalisé"
+	},
+	"cx5rhq4": {
+		"zh-cn": "接口地址",
+		"ja": "エンドポイントURL",
+		"ko": "인터페이스 주소",
+		"ru": "Адрес интерфейса",
+		"en": "Interface address",
+		"fr": "Adresse de l’interface"
+	},
+	"i3t4e34": {
+		"zh-cn": "请求地址",
+		"ja": "リクエストURL",
+		"ko": "주소 요청",
+		"ru": "Запрашиваю адрес.",
+		"en": "Request address",
+		"fr": "Adresse de demande"
+	},
+	"i3vpnr4": {
+		"zh-cn": "请求方法",
+		"ja": "リクエストメソッド",
+		"ko": "요청 방법",
+		"ru": "Способ просьбы",
+		"en": "Request method",
+		"fr": "Méthode de demande"
+	},
+	"6zsb2g5": {
+		"zh-cn": "请求体类型",
+		"ja": "リクエスト本文タイプ",
+		"ko": "요청문 형식",
+		"ru": "Тип запроса",
+		"en": "Request body type",
+		"fr": "Type de corps de demande"
+	},
+	"ivc5y85": {
+		"zh-cn": "文件字段名",
+		"ja": "ファイルフィールド名",
+		"ko": "파일 필드 이름",
+		"ru": "Имя поля файлов",
+		"en": "File field name",
+		"fr": "Nom du fichier"
+	},
+	"1716lb8": {
+		"zh-cn": "响应体中图片路径",
+		"ja": "レスポンス本文内の画像パス",
+		"ko": "응답 본문의 그림 경로입니다",
+		"ru": "Путь изображения в ответном теле",
+		"en": "The image path in the response body",
+		"fr": "Chemin de l’image dans le corps de la réponse"
+	},
+	"59eyp16": {
+		"zh-cn": "响应图片路径",
+		"ja": "レスポンス画像パス",
+		"ko": "응답 그림 경로",
+		"ru": "Путь ответа на изображение",
+		"en": "Response image path",
+		"fr": "Répondre au chemin de l’image"
+	},
+	"llnb4v8": {
+		"zh-cn": "请求头：建议粘贴",
+		"ja": "リクエストヘッダー: 貼り付け推奨",
+		"ko": "요청 헤더:붙여넣기 제안",
+		"ru": "Запрашивающая голова: рекомендуемая наклейка",
+		"en": "Request header: It is recommended to paste",
+		"fr": "En-tête de requête: suggérez un collage"
+	},
+	"l0xnt3": {
+		"zh-cn": "请求头",
+		"ja": "リクエストヘッダー",
+		"ko": "요청 헤더",
+		"ru": "Прошу прощения.",
+		"en": "Request header",
+		"fr": "Demande d’en-tête"
+	},
+	"2x7bjrd": {
+		"zh-cn": "如：{token:xxx}",
+		"ja": "例: {token:xxx}",
+		"ko": "예를 들어:{토켄:xxx}",
+		"ru": "Например:",
+		"en": "For example: {token:xxx}",
+		"fr": "Par exemple: {token: XXX}"
+	},
+	"jmge1j4": {
+		"zh-cn": "额外字段",
+		"ja": "追加フィールド",
+		"ko": "추가 필드",
+		"ru": "Дополнительное поле.",
+		"en": "Additional fields",
+		"fr": "Les champs supplémentaires"
+	},
+	"7zmoyv5": {
+		"zh-cn": "选择语言:",
+		"ja": "言語を選択:",
+		"ko": "언어 선택:",
+		"ru": "Выберите язык:",
+		"en": "Select language",
+		"fr": "Choisissez votre langue:"
+	},
+	"w0vm9f6": {
+		"zh-cn": "当前语言: ",
+		"ja": "現在の言語:",
+		"ko": "현재 언어:",
+		"ru": "Текущий язык:",
+		"en": "Current language",
+		"fr": "Langue actuelle:"
+	},
+	"il6f8z4": {
+		"zh-cn": "选择语言",
+		"ja": "言語を選択",
+		"ko": "언어 선택",
+		"ru": "Выбирайте язык.",
+		"en": "Select a language",
+		"fr": "Choisissez votre langue"
+	},
+	"fflhz3": {
+		"zh-cn": "日本語",
+		"ja": "日本語",
+		"ko": "日本語",
+		"ru": "日本語",
+		"en": "日本語",
+		"fr": "日本語"
+	},
+	"oenv2j6": {
+		"zh-cn": "检查更新失败",
+		"ja": "更新チェックに失敗しました",
+		"ko": "업데이트 확인 실패",
+		"ru": "Проверка. Обновление не работает.",
+		"en": "Check update failed",
+		"fr": "Échec de vérification des mises à jour"
+	},
+	"2phk65h": {
+		"zh-cn": " milkup 新版本现已发布！ ",
+		"ja": "milkup の新バージョンがリリースされました！",
+		"ko": "새로운 milkup 버전이 출시되었습니다!",
+		"ru": "Новая версия милкупа вышла!",
+		"en": "The new version of milkup is now released!",
+		"fr": "La nouvelle version de milkup est maintenant disponible!"
+	},
+	"9hnyisj": {
+		"zh-cn": " 检测到更新，是否前往下载最新版本？ ",
+		"ja": "アップデートがあります。最新バージョンをダウンロードしますか？",
+		"ko": "업데이트가 발견되었습니다. 최신 버전을 다운로드하시겠습니까?",
+		"ru": "Обнаружив обновления, вы собираетесь скачать последнюю версию?",
+		"en": "An update has been detected. Do you want to go and download the latest version?",
+		"fr": "Une mise à jour a été détectée. Voulez-vous aller télécharger la dernière version?"
+	},
+	"5tsj0l6": {
+		"zh-cn": " 前往下载 ",
+		"ja": "ダウンロードへ",
+		"ko": "다운로드하기",
+		"ru": "Загрузка.",
+		"en": "Go to download",
+		"fr": "Aller au téléchargement"
+	},
+	"6w5uu18": {
+		"zh-cn": " 忽略本次更新 ",
+		"ja": "この更新を無視",
+		"ko": "이 업데이트 무시하기",
+		"ru": "Не обращайте внимания на это обновление",
+		"en": "Ignore this update",
+		"fr": "Ignorer cette mise à jour"
+	},
+	"lksv9q7": {
+		"zh-cn": " 稍后提醒我 ",
+		"ja": "後で通知",
+		"ko": "나중에 알림",
+		"ru": "Напомни мне позже.",
+		"en": "Remind me later",
+		"fr": "Me Rappeler plus tard"
+	},
+	"sfioh98": {
+		"zh-cn": "无法获取下载链接",
+		"ja": "ダウンロードリンクを取得できません",
+		"ko": "다운로드 링크를 가져올 수 없습니다",
+		"ru": "Нет доступа к загрузке",
+		"en": "The download link cannot be obtained",
+		"fr": "Impossible d’obtenir le lien de téléchargement"
+	},
+	"jgpr52l": {
+		"zh-cn": "更新日志加载失败，请前往官网下载最新版本。",
+		"ja": "更新ログの読み込みに失敗しました。公式サイトから最新バージョンをダウンロードしてください。",
+		"ko": "업데이트 로그를 불러오는 데 실패했습니다. 웹 사이트로 가서 최신 버전을 다운로드하십시오.",
+		"ru": "Загрузка обновленного журнала не удалась, пожалуйста, идите к официальной сети и загрузите последнюю версию.",
+		"en": "The update log failed to load. Please go to the official website to download the latest version.",
+		"fr": "Le chargement du changelog a échoué. Rendez-vous sur le site officiel et téléchargez la dernière version."
+	},
+	"2rsqg89": {
+		"zh-cn": "正在检查更新...",
+		"ja": "更新を確認中...",
+		"ko": "업데이트 확인 중...",
+		"ru": "Проверяю новости...",
+		"en": "Checking for updates...",
+		"fr": "Vérification des mises à jour..."
+	},
+	"cvjdluk": {
+		"zh-cn": "ir-ProzillaOS-选用-_0]",
+		"ja": "ir-ProzillaOS-選択-_0]",
+		"ko": "ir-ProzillaOS-선택-_0]",
+		"ru": "ir-ProzillaOS-выбор-_0]",
+		"en": "ir-ProzillaOS-selection-_0]",
+		"fr": "ir-ProzillaOS-sélection-_0]"
+	},
+	"nbek3z7": {
+		"zh-cn": "编辑器字体大小",
+		"ja": "エディターのフォントサイズ",
+		"ko": "에디터 글꼴 크기",
+		"ru": "размер шрифта редактора",
+		"en": "Editor font size",
+		"fr": "Taille de police de l'éditeur"
+	},
+	"b372gwa": {
+		"zh-cn": "文本编辑器的字体大小",
+		"ja": "テキストエディターのフォントサイズ",
+		"ko": "텍스트 에디터의 글꼴 크기",
+		"ru": "размер шрифта текстового редактора",
+		"en": "Font size of text editor",
+		"fr": "Taille de police de l'éditeur de texte"
+	},
+	"rihv6q6": {
+		"zh-cn": "代码字体大小",
+		"ja": "コードのフォントサイズ",
+		"ko": "코드 글꼴 크기",
+		"ru": "размер шрифта кода",
+		"en": "Code font size",
+		"fr": "Taille de police du code"
+	},
+	"qwmffy9": {
+		"zh-cn": "代码显示的字体大小",
+		"ja": "コード表示のフォントサイズ",
+		"ko": "코드 표시 글꼴 크기",
+		"ru": "размер шрифта отображения кода",
+		"en": "Font size of code display",
+		"fr": "Taille de police de l'affichage du code"
+	},
+	"z8ochc9": {
+		"zh-cn": "一级标题的字体大小",
+		"ja": "見出し1のフォントサイズ",
+		"ko": "1레벨 제목 글꼴 크기",
+		"ru": "размер шрифта заголовка первого уровня",
+		"en": "Font size of level 1 heading",
+		"fr": "Taille de police du titre de niveau 1"
+	},
+	"tao6g49": {
+		"zh-cn": "二级标题的字体大小",
+		"ja": "見出し2のフォントサイズ",
+		"ko": "2레벨 제목 글꼴 크기",
+		"ru": "размер шрифта заголовка второго уровня",
+		"en": "Font size of level 2 heading",
+		"fr": "Taille de police du titre de niveau 2"
+	},
+	"k58bon9": {
+		"zh-cn": "三级标题的字体大小",
+		"ja": "見出し3のフォントサイズ",
+		"ko": "3레벨 제목 글꼴 크기",
+		"ru": "размер шрифта заголовка третьего уровня",
+		"en": "Font size of level 3 heading",
+		"fr": "Taille de police du titre de niveau 3"
+	},
+	"y4mch79": {
+		"zh-cn": "四级标题的字体大小",
+		"ja": "見出し4のフォントサイズ",
+		"ko": "4레벨 제목 글꼴 크기",
+		"ru": "размер шрифта заголовка четвертого уровня",
+		"en": "Font size of level 4 heading",
+		"fr": "Taille de police du titre de niveau 4"
+	},
+	"fovv509": {
+		"zh-cn": "五级标题的字体大小",
+		"ja": "見出し5のフォントサイズ",
+		"ko": "5레벨 제목 글꼴 크기",
+		"ru": "размер шрифта заголовка пятого уровня",
+		"en": "Font size of level 5 heading",
+		"fr": "Taille de police du titre de niveau 5"
+	},
+	"ux0q4d9": {
+		"zh-cn": "六级标题的字体大小",
+		"ja": "見出し6のフォントサイズ",
+		"ko": "6레벨 제목 글꼴 크기",
+		"ru": "размер шрифта заголовка шестого уровня",
+		"en": "Font size of level 6 heading",
+		"fr": "Taille de police du titre de niveau 6"
+	},
+	"bv1d1o4": {
+		"zh-cn": "字体设置",
+		"ja": "フォント設定",
+		"ko": "글꼴 설정",
+		"ru": "настройка шрифта",
+		"en": "Font settings",
+		"fr": "Paramètres de police"
+	},
+	"9obzlmf": {
+		"zh-cn": " 配置编辑器和代码的字体样式 ",
+		"ja": " エディターとコードのフォントスタイルを設定 ",
+		"ko": " 에디터와 코드의 글꼴 스타일 구성 ",
+		"ru": " Настройка стиля шрифта редактора и кода ",
+		"en": " Configure the font style of editor and code ",
+		"fr": " Configurer le style de police de l'éditeur et du code "
+	},
+	"rqjnhg6": {
+		"zh-cn": " 字体选择 ",
+		"ja": " フォント選択 ",
+		"ko": " 글꼴 선택 ",
+		"ru": " Выбор шрифта ",
+		"en": " Font selection ",
+		"fr": " Sélection de police "
+	},
+	"p1j42": {
+		"zh-cn": "选择",
+		"ja": "選択",
+		"ko": "선택",
+		"ru": "выбор",
+		"en": "Selection",
+		"fr": "Sélection"
+	},
+	"bvptyo4": {
+		"zh-cn": "字号设置",
+		"ja": "フォントサイズ設定",
+		"ko": "글꼴 크기 설정",
+		"ru": "настройка размера шрифта",
+		"en": "Font size settings",
+		"fr": "Paramètres de taille de police"
+	},
+	"yzdvief": {
+		"zh-cn": " 配置不同文本元素的字体大小 ",
+		"ja": " 各テキスト要素のフォントサイズを設定 ",
+		"ko": " 다양한 텍스트 요소의 글꼴 크기 구성 ",
+		"ru": " Настройка размера шрифта различных текстовых элементов ",
+		"en": " Configure the font size of different text elements ",
+		"fr": " Configurer la taille de police des différents éléments de texte "
+	},
+	"lzsxbc6": {
+		"zh-cn": " 正文内容 ",
+		"ja": " 本文 ",
+		"ko": " 본문 내용 ",
+		"ru": " Основной текст ",
+		"en": " Main content ",
+		"fr": " Contenu principal "
+	},
+	"ilv7mg6": {
+		"zh-cn": " 一级标题 ",
+		"ja": " 見出し1 ",
+		"ko": " 1레벨 제목 ",
+		"ru": " Заголовок первого уровня ",
+		"en": " Level 1 heading ",
+		"fr": " Titre de niveau 1 "
+	},
+	"ggw0jw6": {
+		"zh-cn": " 二级标题 ",
+		"ja": " 見出し2 ",
+		"ko": " 2레벨 제목 ",
+		"ru": " Заголовок второго уровня ",
+		"en": " Level 2 heading ",
+		"fr": " Titre de niveau 2 "
+	},
+	"igx2a76": {
+		"zh-cn": " 三级标题 ",
+		"ja": " 見出し3 ",
+		"ko": " 3레벨 제목 ",
+		"ru": " Заголовок третьего уровня ",
+		"en": " Level 3 heading ",
+		"fr": " Titre de niveau 3 "
+	},
+	"g0mdj76": {
+		"zh-cn": " 四级标题 ",
+		"ja": " 見出し4 ",
+		"ko": " 4레벨 제목 ",
+		"ru": " Заголовок четвертого уровня ",
+		"en": " Level 4 heading ",
+		"fr": " Titre de niveau 4 "
+	},
+	"gchnt06": {
+		"zh-cn": " 五级标题 ",
+		"ja": " 見出し5 ",
+		"ko": " 5레벨 제목 ",
+		"ru": " Заголовок пятого уровня ",
+		"en": " Level 5 heading ",
+		"fr": " Titre de niveau 5 "
+	},
+	"57nn8r6": {
+		"zh-cn": " 六级标题 ",
+		"ja": " 見出し6 ",
+		"ko": " 6레벨 제목 ",
+		"ru": " Заголовок шестого уровня ",
+		"en": " Level 6 heading ",
+		"fr": " Titre de niveau 6 "
+	},
+	"rih3a46": {
+		"zh-cn": " 字体大小 ",
+		"ja": " フォントサイズ ",
+		"ko": " 글꼴 크기 ",
+		"ru": " размер шрифта ",
+		"en": " Font size ",
+		"fr": " Taille de police "
+	},
+	"w5t755": {
+		"zh-cn": " [只读]",
+		"ja": "[読み取り専用]",
+		"ko": "[읽기 전용]",
+		"ru": "[только для чтения]",
+		"en": "[Read-only]",
+		"fr": "[Lecture seule]"
+	},
+	"rp05676": {
+		"zh-cn": " [只读] ",
+		"ja": " [読み取り専用] ",
+		"ko": " [읽기 전용] ",
+		"ru": " [только для чтения] ",
+		"en": " [Read-only] ",
+		"fr": " [Lecture seule] "
+	},
+	"cjk8jz5": {
+		"zh-cn": "[只读] ",
+		"ja": "[読み取り専用] ",
+		"ko": "[읽기 전용] ",
+		"ru": "[только для чтения] ",
+		"en": "[Read-only] ",
+		"fr": "[Lecture seule] "
+	},
+	"z3sj0e6": {
+		"zh-cn": "保存文件失败",
+		"ja": "ファイルの保存に失敗しました",
+		"ko": "파일 저장에 실패했습니다",
+		"ru": "Не удалось сохранить файл",
+		"en": "Failed to save file",
+		"fr": "Échec de la sauvegarde du fichier"
+	},
+	"9rm15ze": {
+		"zh-cn": "保存文件失败，请检查写入权限",
+		"ja": "ファイルの保存に失敗しました。書き込み権限を確認してください",
+		"ko": "파일 저장에 실패했습니다. 쓰기 권한을 확인하세요",
+		"ru": "Не удалось сохранить файл. Проверьте права на запись",
+		"en": "Failed to save file, please check write permissions",
+		"fr": "Échec de la sauvegarde du fichier, veuillez vérifier les autorisations d'écriture"
+	},
+	"ccpga9z": {
+		"zh-cn": "文件已被外部修改，但您有未保存的更改。请先保存或丢弃更改后再重新加载。",
+		"ja": "ファイルが外部で変更されましたが、未保存の変更があります。再読み込み前に保存または破棄してください。",
+		"ko": "파일이 외부에서 수정되었지만 저장되지 않은 변경 사항이 있습니다. 변경 사항을 저장하거나 폐기한 후 다시 로드하세요.",
+		"ru": "Файл был изменен извне, но у вас есть несохраненные изменения. Сохраните или отбросьте изменения перед повторной загрузкой.",
+		"en": "The file has been modified externally, but you have unsaved changes. Please save or discard changes before reloading.",
+		"fr": "Le fichier a été modifié externement, mais vous avez des modifications non enregistrées. Veuillez enregistrer ou abandonner les modifications avant de recharger."
+	},
+	"d4k9sh4": {
+		"zh-cn": "文件 \"",
+		"ja": "ファイル「",
+		"ko": "파일 \"",
+		"ru": "Файл «",
+		"en": "File \"",
+		"fr": "Fichier «"
+	},
+	"t04it76": {
+		"zh-cn": "\" 已被删除",
+		"ja": "」は削除されました",
+		"ko": "\"이 삭제되었습니다",
+		"ru": "» был удален",
+		"en": "\" has been deleted",
+		"fr": "» a été supprimé"
+	},
+	"uje4506": {
+		"zh-cn": "监听文件 \"",
+		"ja": "ファイル監視エラー \"",
+		"ko": "파일 \"모니터링 중",
+		"ru": "При мониторинге файла «",
+		"en": "Error monitoring file \"",
+		"fr": "Erreur lors de la surveillance du fichier «"
+	},
+	"egxfh7": {
+		"zh-cn": "\" 时出错: ",
+		"ja": "\": ",
+		"ko": "오류 발생: ",
+		"ru": "возникла ошибка: ",
+		"en": "\": ",
+		"fr": "\": "
+	},
+	"diprg14": {
+		"zh-cn": "未知错误",
+		"ja": "不明なエラー",
+		"ko": "알 수 없는 오류",
+		"ru": "Неизвестная ошибка",
+		"en": "Unknown error",
+		"fr": "Erreur inconnue"
+	},
+	"6lbcrh7": {
+		"zh-cn": "文件已重新加载",
+		"ja": "ファイルを再読み込みしました",
+		"ko": "파일이 다시 로드되었습니다",
+		"ru": "Файл был перезагружен",
+		"en": "File has been reloaded",
+		"fr": "Le fichier a été rechargé"
+	},
+	"r2ntmg7": {
+		"zh-cn": " 文件已更改 ",
+		"ja": " ファイルが変更されました ",
+		"ko": " 파일이 변경되었습니다 ",
+		"ru": " Файл был изменен ",
+		"en": " File has been changed ",
+		"fr": " Le fichier a été modifié "
+	},
+	"i8xfh8c": {
+		"zh-cn": "\" 已被其他程序修改。 ",
+		"ja": "\" は別のプログラムによって変更されました。 ",
+		"ko": "\"이 다른 프로그램에 의해 수정되었습니다. ",
+		"ru": "» был изменен другой программой. ",
+		"en": "\" has been modified by another program. ",
+		"fr": "\" a été modifié par un autre programme. "
+	},
+	"cbnuzvd": {
+		"zh-cn": " 文件已被其他程序修改。 ",
+		"ja": " ファイルが別のプログラムによって変更されました。 ",
+		"ko": " 파일이 다른 프로그램에 의해 수정되었습니다. ",
+		"ru": " Файл был изменен другой программой. ",
+		"en": " File has been modified by another program. ",
+		"fr": " Le fichier a été modifié par un autre programme. "
+	},
+	"ygx5m7r": {
+		"zh-cn": " 是否要重新加载文件内容？当前未保存的更改将会丢失。 ",
+		"ja": " ファイル内容を再読み込みしますか？未保存の変更は失われます。 ",
+		"ko": " 파일 내용을 다시 로드하시겠습니까? 현재 저장되지 않은 변경 사항이 손실됩니다. ",
+		"ru": " Перезагрузить содержимое файла? Несохраненные изменения будут потеряны. ",
+		"en": " Do you want to reload the file content? Unsaved changes will be lost. ",
+		"fr": " Voulez-vous recharger le contenu du fichier? Les modifications non enregistrées seront perdues. "
+	},
+	"u5udsw6": {
+		"zh-cn": " 重新加载 ",
+		"ja": " 再読み込み ",
+		"ko": " 다시 로드 ",
+		"ru": " Перезагрузить ",
+		"en": " Reload ",
+		"fr": " Recharger "
+	},
+	"qzrwgd7": {
+		"zh-cn": " 文件已变动 ",
+		"ja": " ファイルが変更されました ",
+		"ko": " 파일이 변경되었습니다 ",
+		"ru": " Файл был изменен ",
+		"en": " File has changed ",
+		"fr": " Le fichier a changé "
+	},
+	"umfap0k": {
+		"zh-cn": "\" 已经变动，是否覆盖当前编辑的内容？ ",
+		"ja": "\" が変更されました。現在の編集中の内容を上書きしますか？ ",
+		"ko": "\"이 변경되었습니다. 현재 편집 중인 내용을 덮어쓰시겠습니까? ",
+		"ru": "» был изменен. Перезаписать текущее редактируемое содержимое? ",
+		"en": "\" has changed, overwrite the current edited content? ",
+		"fr": "\" a changé, écraser le contenu actuellement édité? "
+	},
+	"fdal1pl": {
+		"zh-cn": " 文件已经变动，是否覆盖当前编辑的内容？ ",
+		"ja": " ファイルが変更されました。現在の編集中の内容を上書きしますか？ ",
+		"ko": " 파일이 변경되었습니다. 현재 편집 중인 내용을 덮어쓰시겠습니까? ",
+		"ru": " Файл был изменен. Перезаписать текущее редактируемое содержимое? ",
+		"en": " The file has changed, overwrite the current edited content? ",
+		"fr": " Le fichier a changé, écraser le contenu actuellement édité? "
+	},
+	"aroz724": {
+		"zh-cn": "切换语言",
+		"ja": "言語を切り替え",
+		"ko": "언어 전환",
+		"ru": "Сменить язык",
+		"en": "Switch language",
+		"fr": "Changer de langue"
+	},
+	"pmyml5i": {
+		"zh-cn": "切换语言需要重启应用，是否现在重启？",
+		"ja": "言語の切り替えにはアプリの再起動が必要です。今すぐ再起動しますか？",
+		"ko": "언어 전환을 위해 앱을 다시 시작해야 합니다. 지금 다시 시작하시겠습니까?",
+		"ru": "Для смены языка требуется перезапуск приложения. Перезапустить сейчас?",
+		"en": "Switching language requires restarting the app, restart now?",
+		"fr": "Le changement de langue nécessite le redémarrage de l'application, redémarrer maintenant?"
+	},
+	"p9fm2": {
+		"zh-cn": "重启",
+		"ja": "再起動",
+		"ko": "재시작",
+		"ru": "Перезапуск",
+		"en": "Restart",
+		"fr": "Redémarrer"
+	},
+	"ev022": {
+		"zh-cn": "取消",
+		"ja": "キャンセル",
+		"ko": "취소",
+		"ru": "Отмена",
+		"en": "Cancel",
+		"fr": "Annuler"
+	},
+	"g93bpeb": {
+		"zh-cn": "请确保所有工作已经保存",
+		"ja": "すべての作業が保存済みであることを確認してください",
+		"ko": "모든 작업이 저장되었는지 확인하세요",
+		"ru": "Убедитесь, что вся работа сохранена",
+		"en": "Please ensure all work has been saved",
+		"fr": "Veuillez vous assurer que tout le travail a été enregistré"
+	},
+	"rq3kv48": {
+		"zh-cn": " 稍后手动重启 ",
+		"ja": " 後で手動で再起動 ",
+		"ko": " 나중에 수동으로 재시작 ",
+		"ru": " Перезапустить вручную позже ",
+		"en": " Restart manually later ",
+		"fr": " Redémarrer manuellement plus tard "
+	},
+	"i4rsca6": {
+		"zh-cn": " 现在重启 ",
+		"ja": " 今すぐ再起動 ",
+		"ko": " 지금 재시작 ",
+		"ru": " Перезапустить сейчас ",
+		"en": " Restart now ",
+		"fr": " Redémarrer maintenant "
+	},
+	"830mn1d": {
+		"zh-cn": "请确保所有工作已经保存! ",
+		"ja": "すべての作業が保存済みであることを確認してください！ ",
+		"ko": "모든 작업이 저장되었는지 확인하세요! ",
+		"ru": "Убедитесь, что вся работа сохранена! ",
+		"en": "Please ensure all work has been saved! ",
+		"fr": "Veuillez vous assurer que tout le travail a été enregistré! "
+	},
+	"6m2p0dc": {
+		"zh-cn": "请确保所有工作已经保存!",
+		"ja": "すべての作業が保存済みであることを確認してください！",
+		"ko": "모든 작업이 저장되었는지 확인하세요!",
+		"ru": "Убедитесь, что вся работа сохранена!",
+		"en": "Please ensure all work has been saved!",
+		"fr": "Veuillez vous assurer que tout le travail a été enregistré!"
+	},
+	"5mi5h2e": {
+		"zh-cn": " 更新语言设置需要重启应用 ",
+		"ja": " 言語設定の更新にはアプリの再起動が必要です ",
+		"ko": " 언어 설정 업데이트를 위해 앱 재시작이 필요합니다 ",
+		"ru": " Для обновления языковых настроек требуется перезапуск приложения ",
+		"en": " Updating language settings requires restarting the app ",
+		"fr": " La mise à jour des paramètres de langue nécessite le redémarrage de l'application "
+	},
+	"onktj1e": {
+		"zh-cn": " 请确保所有工作已经保存! ",
+		"ja": " すべての作業が保存済みであることを確認してください！ ",
+		"ko": " 모든 작업이 저장되었는지 확인하세요! ",
+		"ru": " Убедитесь, что вся работа сохранена! ",
+		"en": " Please ensure all work has been saved! ",
+		"fr": " Veuillez vous assurer que tout le travail a été enregistré! "
+	},
+	"kywilbf": {
+		"zh-cn": "更新语言设置需要重启应用后生效",
+		"ja": "言語設定の更新はアプリ再起動後に反映されます",
+		"ko": "언어 설정 업데이트는 앱을 재시작한 후에 적용됩니다",
+		"ru": "Обновление языковых настроек вступит в силу после перезапуска приложения",
+		"en": "Updating language settings will take effect after restarting the app",
+		"fr": "La mise à jour des paramètres de langue prendra effet après le redémarrage de l'application"
+	},
+	"eae82": {
+		"zh-cn": "其他",
+		"ja": "その他",
+		"ko": "기타",
+		"ru": "Другое",
+		"en": "Other",
+		"fr": "Autre"
+	},
+	"5d6g4k6": {
+		"zh-cn": "编辑器内边距",
+		"ja": "エディターの余白",
+		"ko": "에디터 패딩",
+		"ru": "Отступы редактора",
+		"en": "Editor padding",
+		"fr": "Remplissage de l'éditeur"
+	},
+	"7xnwd2f": {
+		"zh-cn": " 配置编辑器内容区域的内边距 ",
+		"ja": " エディターのコンテンツ領域の余白を設定 ",
+		"ko": " 에디터 콘텐츠 영역의 패딩 구성 ",
+		"ru": " Настройка отступов области содержимого редактора ",
+		"en": " Configure padding for the editor content area ",
+		"fr": " Configurer le remplissage de la zone de contenu de l'éditeur "
+	},
+	"j5j5y58": {
+		"zh-cn": " 预览内容区域 ",
+		"ja": " プレビューコンテンツ領域 ",
+		"ko": " 미리보기 콘텐츠 영역 ",
+		"ru": " Область предварительного просмотра содержимого ",
+		"en": " Preview content area ",
+		"fr": " Zone de contenu de prévisualisation "
+	},
+	"7puh5l7": {
+		"zh-cn": " 内边距设置 ",
+		"ja": " 余白設定 ",
+		"ko": " 패딩 설정 ",
+		"ru": " Настройка отступов ",
+		"en": " Padding settings ",
+		"fr": " Paramètres de remplissage "
+	},
+	"xm43kg11": {
+		"zh-cn": " 设置编辑器内容区域的内边距，支持 CSS 单位（如 px、rem、%） ",
+		"ja": " エディターのコンテンツ領域の余白を設定します。CSS単位（例: px、rem、%）に対応 ",
+		"ko": " 에디터 콘텐츠 영역의 패딩을 설정합니다. CSS 단위(px, rem, % 등)를 지원합니다 ",
+		"ru": " Настройка отступов области содержимого редактора, поддерживаются единицы CSS (например, px, rem, %) ",
+		"en": " Set padding for the editor content area, supports CSS units (e.g., px, rem, %) ",
+		"fr": " Définir le remplissage de la zone de contenu de l'éditeur, prend en charge les unités CSS (par exemple, px, rem, %) "
+	},
+	"cn2q13": {
+		"zh-cn": "内边距",
+		"ja": "余白",
+		"ko": "패딩",
+		"ru": "Отступы",
+		"en": "Padding",
+		"fr": "Remplissage"
+	},
+	"dfykg38": {
+		"zh-cn": "例如: 20px",
+		"ja": "例: 20px",
+		"ko": "예: 20px",
+		"ru": "Например: 20px",
+		"en": "Example: 20px",
+		"fr": "Exemple: 20px"
+	},
+	"rm0wns6": {
+		"zh-cn": " 当前值: ",
+		"ja": " 現在の値: ",
+		"ko": " 현재 값: ",
+		"ru": " Текущее значение: ",
+		"en": " Current value: ",
+		"fr": " Valeur actuelle: "
+	},
+	"ok35ur7": {
+		"zh-cn": "编辑器其他设置",
+		"ja": "エディターのその他設定",
+		"ko": "에디터 기타 설정",
+		"ru": "Другие настройки редактора",
+		"en": "Other editor settings",
+		"fr": "Autres paramètres de l'éditeur"
+	},
+	"qiczjwb": {
+		"zh-cn": " 配置编辑器其他设置 ",
+		"ja": " エディターのその他設定を構成 ",
+		"ko": " 에디터 기타 설정 구성 ",
+		"ru": " Настроить другие параметры редактора ",
+		"en": " Configure other editor settings ",
+		"fr": " Configurer d'autres paramètres de l'éditeur "
+	},
+	"btd1wc4": {
+		"zh-cn": "外观设置",
+		"ja": "外観設定",
+		"ko": "외관 설정",
+		"ru": "Настройки внешнего вида",
+		"en": "Appearance settings",
+		"fr": "Paramètres d'apparence"
+	},
+	"oauiif9": {
+		"zh-cn": "编辑器其他外观设置",
+		"ja": "エディターのその他の外観設定",
+		"ko": "에디터 기타 외관 설정",
+		"ru": "Другие настройки внешнего вида редактора",
+		"en": "Other appearance settings of editor",
+		"fr": "Autres paramètres d'apparence de l'éditeur"
+	},
+	"u5f2sod": {
+		"zh-cn": " 配置编辑器其他外观设置 ",
+		"ja": " エディターのその他の外観設定を構成 ",
+		"ko": " 에디터 기타 외관 설정 구성 ",
+		"ru": " Настроить другие параметры внешнего вида редактора ",
+		"en": " Configure other appearance settings of editor ",
+		"fr": " Configurer d'autres paramètres d'apparence de l'éditeur "
+	},
+	"2j8e0g5": {
+		"zh-cn": "请输入数字",
+		"ja": "数値を入力してください",
+		"ko": "숫자를 입력하세요",
+		"ru": "Введите число",
+		"en": "Please enter a number",
+		"fr": "Veuillez entrer un nombre"
+	},
+	"rt9pmq7": {
+		"zh-cn": "内边距(PX)",
+		"ja": "内側余白 (PX)",
+		"ko": "패딩(PX)",
+		"ru": "Отступы (PX)",
+		"en": "Padding (PX)",
+		"fr": "Remplissage (PX)"
+	},
+	"3o81my8": {
+		"zh-cn": "左右边距(PX)",
+		"ja": "左右の余白 (PX)",
+		"ko": "좌우 패딩(PX)",
+		"ru": "Лево-правые отступы (PX)",
+		"en": "Left and right padding (PX)",
+		"fr": "Remplissage gauche et droit (PX)"
+	},
+	"7hktj26": {
+		"zh-cn": "渲染中...",
+		"ja": "レンダリング中...",
+		"ko": "렌더링 중...",
+		"ru": "Отрисовка...",
+		"en": "Rendering...",
+		"fr": "Rendu en cours..."
+	},
+	"glbv83": {
+		"zh-cn": "流程图",
+		"ja": "フローチャート",
+		"ko": "플로우차트",
+		"ru": "Блок-схема",
+		"en": "Flow chart",
+		"fr": "Diagramme de flux"
+	},
+	"fjmy2": {
+		"zh-cn": "图表",
+		"ja": "チャート",
+		"ko": "차트",
+		"ru": "Диаграмма",
+		"en": "Chart",
+		"fr": "Graphique"
+	},
+	"fe75x3": {
+		"zh-cn": "时序图",
+		"ja": "シーケンス図",
+		"ko": "시퀀스 다이어그램",
+		"ru": "Последовательная диаграмма",
+		"en": "Sequence diagram",
+		"fr": "Diagramme de séquence"
+	},
+	"aftmxy4": {
+		"zh-cn": "下载失败",
+		"ja": "ダウンロードに失敗しました",
+		"ko": "다운로드에 실패했습니다",
+		"ru": "Не удалось скачать",
+		"en": "Download failed",
+		"fr": "Échec du téléchargement"
+	},
+	"utnnr56": {
+		"zh-cn": "更新出错: ",
+		"ja": "更新中にエラーが発生しました: ",
+		"ko": "업데이트 중 오류 발생: ",
+		"ru": "Ошибка обновления: ",
+		"en": "Update error: ",
+		"fr": "Erreur de mise à jour: "
+	},
+	"aftsuu4": {
+		"zh-cn": "下载完成",
+		"ja": "ダウンロード完了",
+		"ko": "다운로드가 완료되었습니다",
+		"ru": "Загрузка завершена",
+		"en": "Download completed",
+		"fr": "Téléchargement terminé"
+	},
+	"97iatz8": {
+		"zh-cn": "正在下载... ",
+		"ja": "ダウンロード中... ",
+		"ko": "다운로드 중... ",
+		"ru": "Загрузка... ",
+		"en": "Downloading... ",
+		"fr": "Téléchargement en cours... "
+	},
+	"90d1z06": {
+		"zh-cn": " 立即更新 ",
+		"ja": " 今すぐ更新 ",
+		"ko": " 즉시 업데이트 ",
+		"ru": " Обновить сейчас ",
+		"en": " Update now ",
+		"fr": " Mettre à jour maintenant "
+	},
+	"v1i5cj8": {
+		"zh-cn": " 下载中... ",
+		"ja": " ダウンロード中... ",
+		"ko": " 다운로드 중... ",
+		"ru": " Загрузка... ",
+		"en": " Downloading... ",
+		"fr": " Téléchargement en cours... "
+	},
+	"rzmztu6": {
+		"zh-cn": " 重启安装 ",
+		"ja": " 再起動してインストール ",
+		"ko": " 재시작하여 설치 ",
+		"ru": " Перезапустить для установки ",
+		"en": " Restart to install ",
+		"fr": " Redémarrer pour installer "
+	},
+	"d3b5r78": {
+		"zh-cn": "点击恢复下载弹窗",
+		"ja": "クリックしてダウンロードポップアップを復元",
+		"ko": "다운로드 복원 팝업 클릭",
+		"ru": "Нажмите на всплывающее окно восстановления загрузки",
+		"en": "Click to restore download popup",
+		"fr": "Cliquez pour restaurer la fenêtre contextuelle de téléchargement"
+	},
+	"50uczt5": {
+		"zh-cn": "正在下载 ",
+		"ja": "ダウンロード中 ",
+		"ko": "다운로드 중 ",
+		"ru": "Загрузка ",
+		"en": "Downloading ",
+		"fr": "Téléchargement en cours "
+	},
+	"5f4uk49": {
+		"zh-cn": "下载完成，点击安装",
+		"ja": "ダウンロード完了、クリックしてインストール",
+		"ko": "다운로드가 완료되었습니다. 클릭하여 설치하세요",
+		"ru": "Загрузка завершена, нажмите для установки",
+		"en": "Download completed, click to install",
+		"fr": "Téléchargement terminé, cliquez pour installer"
+	},
+	"vz4lz7f": {
+		"zh-cn": "milkup 新版本现已发布！",
+		"ja": "milkup の新しいバージョンがあります！",
+		"ko": "milkup 새로운 버전이 출시되었습니다!",
+		"ru": "Новая версия milkup выпущена!",
+		"en": "A new version of milkup is now available!",
+		"fr": "Une nouvelle version de milkup est maintenant disponible!"
+	},
+	"aik7f46": {
+		"zh-cn": "前往发布页 ",
+		"ja": "リリースページへ",
+		"ko": " 릴리즈 페이지로 이동 ",
+		"ru": " Перейти на страницу выпуска ",
+		"en": " Go to release page ",
+		"fr": " Aller à la page de publication "
+	},
+	"2l6izt7": {
+		"zh-cn": "正在下载...",
+		"ja": "ダウンロード中...",
+		"ko": "다운로드 중...",
+		"ru": "Загрузка...",
+		"en": "Downloading...",
+		"fr": "Téléchargement en cours..."
+	},
+	"fj8br3": {
+		"zh-cn": "最小化",
+		"ja": "最小化",
+		"ko": "최소화",
+		"ru": "Свернуть",
+		"en": "Minimize",
+		"fr": "Minimiser"
+	},
+	"l0k0ei8": {
+		"zh-cn": "当前已为最新版本",
+		"ja": "現在は最新バージョンです",
+		"ko": "현재 최신 버전입니다",
+		"ru": "В настоящее время установлена последняя версия",
+		"en": "Currently the latest version",
+		"fr": "Version actuelle est la plus récente"
+	},
+	"f7u97p8": {
+		"zh-cn": "检查更新失败: ",
+		"ja": "更新の確認に失敗しました: ",
+		"ko": "업데이트 확인에 실패했습니다: ",
+		"ru": "Не удалось проверить обновления: ",
+		"en": "Failed to check for updates: ",
+		"fr": "Échec de la vérification des mises à jour: "
+	},
+	"lxz2q6h": {
+		"zh-cn": "milkup 是完全免费开源的软件",
+		"ja": "milkup は完全無料のオープンソースソフトウェアです",
+		"ko": "milkup은 완전 무료 오픈소스 소프트웨어입니다",
+		"ru": "milkup — это полностью бесплатное программное обеспечение с открытым исходным кодом",
+		"en": "milkup is completely free and open-source software",
+		"fr": "milkup est un logiciel entièrement gratuit et open source"
+	},
+	"qy6ip4b": {
+		"zh-cn": "配置编辑器其他外观设置",
+		"ja": "エディターのその他の外観設定",
+		"ko": "에디터 기타 외관 설정 구성",
+		"ru": "Настроить другие параметры внешнего вида редактора",
+		"en": "Configure other appearance settings of editor",
+		"fr": "Configurer d'autres paramètres d'apparence de l'éditeur"
+	},
+	"wzudk98": {
+		"zh-cn": "双击修改 URL",
+		"ja": "ダブルクリックでURLを編集",
+		"ko": "더블 클릭하여 URL 수정",
+		"ru": "Дважды щелкните, чтобы изменить URL",
+		"en": "Double-click to edit URL",
+		"fr": "Double-cliquez pour modifier l'URL"
+	},
+	"v66gef9": {
+		"zh-cn": "修改链接 URL:",
+		"ja": "リンクURLを編集:",
+		"ko": "링크 URL 수정:",
+		"ru": "Изменить URL ссылки:",
+		"en": "Edit link URL:",
+		"fr": "Modifier l'URL du lien :"
+	},
+	"a6fdb94": {
+		"zh-cn": "上传文件",
+		"ja": "ファイルをアップロード",
+		"ko": "파일 업로드",
+		"ru": "Загрузить файл",
+		"en": "Upload file",
+		"fr": "Télécharger un fichier"
+	},
+	"l9122": {
+		"zh-cn": "确认",
+		"ja": "確認",
+		"ko": "확인",
+		"ru": "Подтвердить",
+		"en": "Confirm",
+		"fr": "Confirmer"
+	},
+	"ieee177": {
+		"zh-cn": "粘贴链接...",
+		"ja": "リンクを貼り付け...",
+		"ko": "링크 붙여넣기...",
+		"ru": "Вставить ссылку...",
+		"en": "Paste link...",
+		"fr": "Coller le lien..."
+	},
+	"ikzkgf4": {
+		"zh-cn": "选择文件",
+		"ja": "ファイルを選択",
+		"ko": "파일 선택",
+		"ru": "Выбрать файл",
+		"en": "Select file",
+		"fr": "Sélectionner un fichier"
+	},
+	"bsy8dm5": {
+		"zh-cn": "未命名文档",
+		"ja": "無題のドキュメント",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"i7ej2": {
+		"zh-cn": "未知",
+		"ja": "不明",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"m16cho4w": {
+		"zh-cn": "你是一个技术文档续写助手。\n严格只输出以下 JSON，**不要有任何前缀、后缀、markdown、换行、解释**：\n\n{\"continuation\": \"接下来只写3–35个汉字的自然衔接内容\"}\n\n另外，如果 API 支持 structured outputs / json_schema / response_format 则在 API 层级限制。",
+		"ja": "あなたは技術文書の続き書きアシスタントです。\\n以下の JSON のみを厳密に出力し、前置き・後書き・markdown・改行・説明は一切不要です：\\n\\n{\"continuation\": \"続きとして2〜5文字の自然な接続文だけを書く\"}\\n\\nまた、API が structured outputs / json_schema / response_format をサポートしている場合は API レイヤーで制約してください。",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"tq3vltb": {
+		"zh-cn": "2-20 个汉字的续写",
+		"ja": "2〜20文字の続き生成",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"ogrq8qa": {
+		"zh-cn": "上下文：\n文章标题：",
+		"ja": "コンテキスト:\\n記事タイトル:",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"buavkc5": {
+		"zh-cn": "\n大标题：",
+		"ja": "\\n大見出し:",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"ud32b87": {
+		"zh-cn": "\n本小节标题：",
+		"ja": "\\n本節の見出し:",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"z351ktd": {
+		"zh-cn": "\n前面内容（请紧密衔接）：",
+		"ja": "\\n前の内容（自然につなげてください）:",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"b11tpw7": {
+		"zh-cn": "AI 续写设置",
+		"ja": "AI続き生成設定",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"78ytez5": {
+		"zh-cn": "连接成功！",
+		"ja": "接続成功！",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"ikbexi4": {
+		"zh-cn": "连接成功",
+		"ja": "接続成功",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"q9hql0a": {
+		"zh-cn": "连接失败，请检查配置",
+		"ja": "接続に失敗しました。設定を確認してください",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"ika8634": {
+		"zh-cn": "连接失败",
+		"ja": "接続失敗",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"9u4wy46": {
+		"zh-cn": "连接出错: ",
+		"ja": "接続エラー: ",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"jdhqxo4": {
+		"zh-cn": "错误: ",
+		"ja": "エラー: ",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"n63u0z8": {
+		"zh-cn": "启用 AI 续写",
+		"ja": "AI続き生成を有効化",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"jkvovdg": {
+		"zh-cn": "服务提供商 (Provider)",
+		"ja": "プロバイダー (Provider)",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"vwo89ea": {
+		"zh-cn": "模型 (Model)",
+		"ja": "モデル (Model)",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"mennovb": {
+		"zh-cn": "正在加载模型列表...",
+		"ja": "モデル一覧を読み込み中...",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"a1m9965": {
+		"zh-cn": "未找到模型",
+		"ja": "モデルが見つかりません",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"61g4yc6": {
+		"zh-cn": "刷新模型列表",
+		"ja": "モデル一覧を更新",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"o9xxdrj": {
+		"zh-cn": "随机性 (Temperature): ",
+		"ja": "ランダム性 (Temperature): ",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"nxfz0r6": {
+		"zh-cn": "测试中...",
+		"ja": "テスト中...",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"edfmk14": {
+		"zh-cn": "测试连接",
+		"ja": "接続をテスト",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"fy1g2": {
+		"zh-cn": "失败",
+		"ja": "失敗",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"q4mu2": {
+		"zh-cn": "错误",
+		"ja": "エラー",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"u4t3ke8": {
+		"zh-cn": "获取模型列表失败",
+		"ja": "モデル一覧の取得に失敗しました",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"cf4xcp5": {
+		"zh-cn": "服务提供商",
+		"ja": "プロバイダー",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"f91vmhh": {
+		"zh-cn": "随机性 (Temperature)",
+		"ja": "ランダム性 (Temperature)",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"9ofd4sf": {
+		"zh-cn": "触发延迟 (Debounce)",
+		"ja": "トリガー遅延 (Debounce)",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"mer6ks6": {
+		"zh-cn": "快 (1s)",
+		"ja": "速い (1s)",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"n8m1it7": {
+		"zh-cn": "适中 (2s)",
+		"ja": "普通 (2s)",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"d2x0tb6": {
+		"zh-cn": "慢 (3s)",
+		"ja": "遅い (3s)",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"fx6eua2r": {
+		"zh-cn": "你是一个技术文档续写助手。\n严格只输出以下 JSON，**不要有任何前缀、后缀、markdown、换行、解释**：\n\n{\"continuation\": \"接下来只写3–35个汉字的自然衔接内容\"}\n",
+		"ja": "あなたは技術文書の続き書きアシスタントです。\\n以下の JSON のみを厳密に出力し、前置き・後書き・markdown・改行・説明は一切不要です：\\n\\n{\"continuation\": \"続きとして3〜5文字の自然な接続文だけを書く\"}\\n",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"a0oapib": {
+		"zh-cn": "3–35 个汉字的续写",
+		"ja": "3〜5文字の続き生成",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"cvzdn9p": {
+		"zh-cn": "图片将自动转为 base64（可能会增大文件体积）",
+		"ja": "画像は自動的に base64 へ変換されます（ファイルサイズが増える可能性があります）",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"68tpr19": {
+		"zh-cn": " 全部保存并重启 ",
+		"ja": "すべて保存して再起動?",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"5ievmo6": {
+		"zh-cn": "稍后手动重启",
+		"ja": "あとで手動で再起動",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"cbo7lp7": {
+		"zh-cn": "全部保存并重启",
+		"ja": "すべて保存して再起動",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"9kagif1g": {
+		"zh-cn": "<div class=\"milkup-mermaid-error\">Mermaid 渲染错误</div>",
+		"ja": "<div class=\"milkup-mermaid-error\">Mermaid のレンダリングエラー</div>",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"dcev9f9": {
+		"zh-cn": "输入数学公式...",
+		"ja": "数式を入力...",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"dksrvi15": {
+		"zh-cn": "<span class=\"milkup-image-error\">图片加载失败: ",
+		"ja": "<span class=\"milkup-image-error\">画像の読み込みに失敗しました: ",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"m2x6wu7": {
+		"zh-cn": "请输入图片地址",
+		"ja": "画像URLを入力",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"3dlqhm4v": {
+		"zh-cn": "\n      <span class=\"milkup-image-placeholder-icon\">🖼️</span>\n      <span class=\"milkup-image-placeholder-text\">图片加载失败</span>\n      <span class=\"milkup-image-placeholder-src\">",
+		"ja": "\n      <span class=\"milkup-image-placeholder-icon\">🖼️</span>\n      <span class=\"milkup-image-placeholder-text\">画像の読み込みに失敗しました</span>\n      <span class=\"milkup-image-placeholder-src\">",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"hxe78ca": {
+		"zh-cn": "请输入完整的图片语法",
+		"ja": "完全な画像構文を入力してください",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"e2ri2": {
+		"zh-cn": "代码",
+		"ja": "コード",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"j5yp2": {
+		"zh-cn": "混合",
+		"ja": "混在",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"egv12": {
+		"zh-cn": "剪切",
+		"ja": "切り取り",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"lyu42": {
+		"zh-cn": "粘贴",
+		"ja": "貼り付け",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"gsl8t46": {
+		"zh-cn": "取消下载失败",
+		"ja": "ダウンロードのキャンセルに失敗しました",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"villim5": {
+		"zh-cn": "下载已取消",
+		"ja": "ダウンロードをキャンセルしました",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"8wksrz8": {
+		"zh-cn": "写点什么吧...",
+		"ja": "何か書いてみましょう...",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"lml82": {
+		"zh-cn": "粗体",
+		"ja": "太字",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"hpvb2": {
+		"zh-cn": "斜体",
+		"ja": "斜体",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"hj7bp34": {
+		"zh-cn": "行内代码",
+		"ja": "インラインコード",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"crbi33": {
+		"zh-cn": "删除线",
+		"ja": "取り消し線",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"qrpy2": {
+		"zh-cn": "高亮",
+		"ja": "ハイライト",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"j1ns2": {
+		"zh-cn": "段落",
+		"ja": "段落",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"b15xfh4": {
+		"zh-cn": "取消嵌套",
+		"ja": "ネスト解除",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"d6dimx4": {
+		"zh-cn": "数学公式",
+		"ja": "数式",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"eg9hk94": {
+		"zh-cn": "源码视图",
+		"ja": "ソースビュー",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"hxp82": {
+		"zh-cn": "撤销",
+		"ja": "元に戻す",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"p8od2": {
+		"zh-cn": "重做",
+		"ja": "やり直し",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"atgagy4": {
+		"zh-cn": "内联格式",
+		"ja": "インライン書式",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"bjmutf4": {
+		"zh-cn": "块级格式",
+		"ja": "ブロック書式",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"hfbn2": {
+		"zh-cn": "插入",
+		"ja": "挿入",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"i5qyrg5": {
+		"zh-cn": "编辑器操作",
+		"ja": "エディター操作",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"ejide3": {
+		"zh-cn": "快捷键",
+		"ja": "ショートカットキー",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"hmmkw79": {
+		"zh-cn": "搜索功能名称...",
+		"ja": "機能名を検索...",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"3rhvpka": {
+		"zh-cn": "按下快捷键搜索...",
+		"ja": "ショートカットキーを押して検索...",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"k9szc78": {
+		"zh-cn": "与以下功能冲突：",
+		"ja": "以下の機能と競合:",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"412ezha": {
+		"zh-cn": "请按下新快捷键...",
+		"ja": "新しいショートカットキーを押してください...",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"2q1ayx6": {
+		"zh-cn": "重置为默认值",
+		"ja": "デフォルトにリセット",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"kkvm9k9": {
+		"zh-cn": " 重置所有快捷键 ",
+		"ja": " すべてのショートカットキーをリセット ",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"dcc4lk7": {
+		"zh-cn": "重置所有快捷键",
+		"ja": "すべてのショートカットキーをリセット",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"thqafk5": {
+		"zh-cn": "主题编辑器",
+		"ja": "テーマエディター",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"tdufl9a": {
+		"zh-cn": "设置主题的名称和描述",
+		"ja": "テーマの名前と説明を設定",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"3lnpsx8": {
+		"zh-cn": "快速应用预设主题",
+		"ja": "プリセットテーマをすばやく適用",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"grhnucb": {
+		"zh-cn": "配置应用界面的颜色主题",
+		"ja": "アプリ画面のカラーテーマを設定",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"9am2d6i": {
+		"zh-cn": "配置Markdown编辑器的颜色主题",
+		"ja": "Markdownエディターのカラーテーマを設定",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"phz52": {
+		"zh-cn": "重置",
+		"ja": "リセット",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"agefiw4": {
+		"zh-cn": "保存主题",
+		"ja": "テーマを保存",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"9mw03zc": {
+		"zh-cn": "Mermaid 图表设置",
+		"ja": "Mermaid 図表設定",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"v68bp3l": {
+		"zh-cn": "配置 Mermaid 代码块的默认显示模式",
+		"ja": "Mermaid コードブロックのデフォルト表示モードを設定",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"4vzyp66": {
+		"zh-cn": "默认显示模式",
+		"ja": "デフォルト表示モード",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"oflg3": {
+		"zh-cn": " 表格",
+		"ja": " 表",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"g72m745": {
+		"zh-cn": "向上插入行",
+		"ja": "上に行を挿入",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"g71z7l5": {
+		"zh-cn": "向下插入行",
+		"ja": "下に行を挿入",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"u5xz106": {
+		"zh-cn": "在末尾添加行",
+		"ja": "末尾に行を追加",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"e72i5t5": {
+		"zh-cn": "向左插入列",
+		"ja": "左に列を挿入",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"fg8tr25": {
+		"zh-cn": "向右插入列",
+		"ja": "右に列を挿入",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"u5y9qh6": {
+		"zh-cn": "在末尾添加列",
+		"ja": "末尾に列を追加",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"eoh5zm5": {
+		"zh-cn": "删除当前行",
+		"ja": "現在の行を削除",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"eohgp35": {
+		"zh-cn": "删除当前列",
+		"ja": "現在の列を削除",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"cxttk74": {
+		"zh-cn": "插入表格",
+		"ja": "表を挿入",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"3qkpww5": {
+		"zh-cn": "复制代码块",
+		"ja": "コードブロックをコピー",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"arihfi4": {
+		"zh-cn": "切换替换",
+		"ja": "置換を切り替え",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"hpqe2": {
+		"zh-cn": "搜索",
+		"ja": "検索",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"4mfs835": {
+		"zh-cn": "正则表达式",
+		"ja": "正規表現",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"fjbpl3": {
+		"zh-cn": "无结果",
+		"ja": "結果なし",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"sn9tbej": {
+		"zh-cn": "上一个匹配 (Shift+Enter)",
+		"ja": "前の一致 (Shift+Enter)",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"l755pad": {
+		"zh-cn": "下一个匹配 (Enter)",
+		"ja": "次の一致 (Enter)",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"doreq66": {
+		"zh-cn": "在选区内搜索",
+		"ja": "選択範囲内で検索",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"2u0y62b": {
+		"zh-cn": "关闭 (Escape)",
+		"ja": "閉じる (Escape)",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"avd03n4": {
+		"zh-cn": "全部替换",
+		"ja": "すべて置換",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"ov8y2": {
+		"zh-cn": "输入",
+		"ja": "入力",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"cuovnz5": {
+		"zh-cn": "+左击访问",
+		"ja": "+左クリックでアクセス",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"bm3vpa2v": {
+		"zh-cn": "你是一个技术文档续写助手。\n严格只输出以下 JSON，**不要有任何前缀、后缀、markdown、换行、解释**：\n\n{\"continuation\": \"接下来只写3–35个汉字的自然衔接内容\"}\n",
+		"ja": "あなたは技術文書の続き執筆アシスタントです。\\n以下のJSONのみを厳密に出力してください。*前置き・後置き・markdown・改行・説明は不要*：\\n\\n{\\\"continuation\\\": \\\"このあとに続く自然な15文字の内容だけを書く\\\"}\\n",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"2r4lzqb": {
+		"zh-cn": "上下文：\n文章标题：",
+		"ja": "コンテキスト：\\n記事タイトル：",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"e3oiss6": {
+		"zh-cn": "\n大标题：",
+		"ja": "\\n大見出し：",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"u1nvng8": {
+		"zh-cn": "\n本小节标题：",
+		"ja": "\\nこの小節の見出し：",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"az93ude": {
+		"zh-cn": "\n前面内容（请紧密衔接）：",
+		"ja": "\\n前の内容（密接に続けてください）：",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"1j569y4y": {
+		"zh-cn": "\n      <span class=\"milkup-image-placeholder-icon\">🖼️</span>\n      <span class=\"milkup-image-placeholder-text\">图片加载失败</span>\n      <span class=\"milkup-image-placeholder-src\">",
+		"ja": "\n      <span class=\"milkup-image-placeholder-icon\">🖼️</span>\n      <span class=\"milkup-image-placeholder-text\">画像の読み込みに失敗しました</span>\n      <span class=\"milkup-image-placeholder-src\">",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"7tqnyi5": {
+		"zh-cn": "选择文件夹",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"ex6bw3": {
+		"zh-cn": "按名称",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"f0djb3": {
+		"zh-cn": "按时间",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"1gr2137": {
+		"zh-cn": "搜索文件...",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"d84kyh4": {
+		"zh-cn": "新建文件",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"lrmwt3": {
+		"zh-cn": "重命名",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"eslg2": {
+		"zh-cn": "删除",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"frotru4": {
+		"zh-cn": "确认删除",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"t184lj7": {
+		"zh-cn": " 确定要删除 ",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"cgp7sac": {
+		"zh-cn": " 吗？此操作不可恢复。 ",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"ejix2": {
+		"zh-cn": "刷新",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"dct7d54": {
+		"zh-cn": "暂无大纲",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"jk6wsv6": {
+		"zh-cn": "跳转到该位置",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"h8aw2": {
+		"zh-cn": "折叠",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"g665c6": {
+		"zh-cn": "折叠一级标题",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"inkb86": {
+		"zh-cn": "折叠二级标题",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"gbx136": {
+		"zh-cn": "折叠三级标题",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"1kdpet6": {
+		"zh-cn": "折叠四级标题",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"iso7g6": {
+		"zh-cn": "折叠五级标题",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"vq5n76": {
+		"zh-cn": "折叠六级标题",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"c1kdmz4": {
+		"zh-cn": "展开全部",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"g6psjk5": {
+		"zh-cn": "新建文件夹",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"4kf6zk6": {
+		"zh-cn": "新建文件夹 ",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"aok7385": {
+		"zh-cn": "更换文件夹",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"gl01kl7e": {
+		"zh-cn": "\n<br />\n\n# MilkUp\n\n<br />\n\n> 这是一段测试文字\n\n<br />\n\n***\n\n<br />\n\n* item1\n* item2\n* item3\n\n代码：\n\n```JavaScript\nconst text = \"Hello Word!\"\nconsole.log(text)\n```\n\n<br />\n\n| 1  | 2  | 3  |\n| :- | :- | :- |\n| 1  | 2  | 3  |\n| 1  | 2  | 3  |\n\n\n",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"mw54kf6": {
+		"zh-cn": " 选择位置 ",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"xnvb0b27": {
+		"zh-cn": " 相对路径基于当前 Markdown 文件目录，例如 `/assets` 会保存到当前文件目录下的 `assets` 文件夹；绝对路径会直接保存到指定目录。 ",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"bkw8ix4": {
+		"zh-cn": "复制本行",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"rdvpxj6": {
+		"zh-cn": "删除此代码块",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"iz5k2g5": {
+		"zh-cn": "搜索...",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"1li91h6": {
+		"zh-cn": " 无匹配项 ",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"d5bwf64": {
+		"zh-cn": "搜索字体",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"d7h3ol4": {
+		"zh-cn": "无匹配项",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"xixe9md": {
+		"zh-cn": "配置编辑器和代码的字体样式",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"jzo94qd": {
+		"zh-cn": "配置不同文本元素的字体大小",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"dyvec84": {
+		"zh-cn": "正文内容",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"wzgjv47": {
+		"zh-cn": " 前往发布页 ",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"ypb7wrd": {
+		"zh-cn": "控制编辑器中的拼写检查能力",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"bgchnp4": {
+		"zh-cn": "图片粘贴",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"p3ko1gf": {
+		"zh-cn": "设置粘贴图片后的保存与上传方式",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"ksgnsqh": {
+		"zh-cn": "配置 AI 提供商、模型与连接参数",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"zaoq64e": {
+		"zh-cn": "常用的打开、保存与另存为操作",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"q1na9je": {
+		"zh-cn": "将当前内容导出为不同格式文件",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"e524j3": {
+		"zh-cn": "工作区",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"mjd0oik": {
+		"zh-cn": "设置启动时自动打开的文件夹与左侧边栏状态",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"e5yyyxb": {
+		"zh-cn": "选择启动时打开的工作区",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"f6hxpy5": {
+		"zh-cn": "启动工作区",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"ahzl2qi": {
+		"zh-cn": "未设置，软件启动时不会自动打开文件夹",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"ikw1xd4": {
+		"zh-cn": "选择位置",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"he57l4": {
+		"zh-cn": " 清除 ",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"c6pvhz4": {
+		"zh-cn": "左侧边栏",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"rwhea1g": {
+		"zh-cn": "启动时自动展开文件夹 / 大纲栏",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"wv7y05": {
+		"zh-cn": "路径不存在",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"k55bpty": {
+		"zh-cn": "检测到 WSL / 远程路径，已跳过自动加载工作区，可手动打开文件夹",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"ei74fc4": {
+		"zh-cn": "清除绑定",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"fq1zn3": {
+		"zh-cn": "未绑定",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"i5wzwb5": {
+		"zh-cn": "编辑器行为",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"s53vk4c": {
+		"zh-cn": "控制编辑器保存等基础行为",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"gqdz894": {
+		"zh-cn": "自动保存",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"eq26gao": {
+		"zh-cn": "开启后会在已保存过的文件内容变更后自动写回磁盘。",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"27k1ha6": {
+		"zh-cn": "加载中...",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"4dzah2a": {
+		"zh-cn": "正在加载大文件...",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"cle7779": {
+		"zh-cn": "正在打开文件...",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"awasvl4": {
+		"zh-cn": "关闭标签",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"ebjexn8": {
+		"zh-cn": " 关闭右侧标签 ",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"1pyyb17": {
+		"zh-cn": " 关闭已保存 ",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"2ac37e6": {
+		"zh-cn": " 关闭其他 ",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"3zb7n59": {
+		"zh-cn": "正在切换主题...",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"6087fn8": {
+		"zh-cn": "用户取消插入图片",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"8hbor98": {
+		"zh-cn": "用户取消保存文件",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"88zu2w6": {
+		"zh-cn": "图片保存失败",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"pz8mva9": {
+		"zh-cn": " 文件同名文件夹 ",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"h4nz0r1y": {
+		"zh-cn": "开启后会使用完整 Markdown 文件名创建同名文件夹，例如 demo.md/image.png。未保存文件首次粘贴图片时会询问处理方式。",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"z7qo6d25": {
+		"zh-cn": "相对路径基于当前 Markdown 文件目录，例如 `/assets` 会保存到当前文件目录下的 `assets` 文件夹；绝对路径会直接保存到指定目录。",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"dqp6wy4": {
+		"zh-cn": "标题 1",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"dqp6wz4": {
+		"zh-cn": "标题 2",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"dqp6x04": {
+		"zh-cn": "标题 3",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	},
+	"kr3b2": {
+		"zh-cn": "目录",
+		"ja": "",
+		"ko": "",
+		"ru": "",
+		"en": "",
+		"fr": ""
+	}
+}

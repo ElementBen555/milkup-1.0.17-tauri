@@ -1,0 +1,2058 @@
+/**
+ * Milkup 代码块 NodeView
+ *
+ * 使用 CodeMirror 6 实现代码块编辑
+ * 支持语法高亮和 Mermaid 图表预览
+ * 支持源码模式显示完整 Markdown 语法
+ */
+
+import { Node as ProseMirrorNode } from "prosemirror-model";
+import { EditorView as ProseMirrorView, NodeView } from "prosemirror-view";
+import { Selection, TextSelection } from "prosemirror-state";
+import {
+  EditorView,
+  keymap as cmKeymap,
+  ViewUpdate,
+  lineNumbers,
+  Decoration as CMDecoration,
+} from "@codemirror/view";
+import { EditorState as CMEditorState, Compartment, Extension } from "@codemirror/state";
+import { defaultKeymap, history, historyKeymap } from "@codemirror/commands";
+import { syntaxHighlighting, defaultHighlightStyle, HighlightStyle, StreamLanguage } from "@codemirror/language";
+import { tags } from "@lezer/highlight";
+import { sourceViewManager } from "../decorations";
+import { searchPluginKey } from "../plugins/search";
+
+/** Mermaid 显示模式 */
+type MermaidDisplayMode = "code" | "mixed" | "diagram";
+
+/** 暗色主题高亮样式 */
+export const darkHighlightStyle = HighlightStyle.define([
+  { tag: tags.keyword, color: "#ff7b72" },
+  { tag: tags.operator, color: "#79c0ff" },
+  { tag: tags.special(tags.variableName), color: "#ffa657" },
+  { tag: tags.typeName, color: "#ffa657" },
+  { tag: tags.atom, color: "#79c0ff" },
+  { tag: tags.number, color: "#79c0ff" },
+  { tag: tags.definition(tags.variableName), color: "#d2a8ff" },
+  { tag: tags.string, color: "#a5d6ff" },
+  { tag: tags.special(tags.string), color: "#a5d6ff" },
+  { tag: tags.comment, color: "#8b949e", fontStyle: "italic" },
+  { tag: tags.variableName, color: "#c9d1d9" },
+  { tag: tags.tagName, color: "#7ee787" },
+  { tag: tags.propertyName, color: "#79c0ff" },
+  { tag: tags.attributeName, color: "#79c0ff" },
+  { tag: tags.className, color: "#ffa657" },
+  { tag: tags.labelName, color: "#d2a8ff" },
+  { tag: tags.namespace, color: "#ff7b72" },
+  { tag: tags.macroName, color: "#d2a8ff" },
+  { tag: tags.literal, color: "#79c0ff" },
+  { tag: tags.bool, color: "#79c0ff" },
+  { tag: tags.null, color: "#79c0ff" },
+  { tag: tags.punctuation, color: "#c9d1d9" },
+  { tag: tags.bracket, color: "#c9d1d9" },
+  { tag: tags.meta, color: "#8b949e" },
+  { tag: tags.link, color: "#58a6ff", textDecoration: "underline" },
+  { tag: tags.heading, color: "#79c0ff", fontWeight: "bold" },
+  { tag: tags.emphasis, fontStyle: "italic" },
+  { tag: tags.strong, fontWeight: "bold" },
+  { tag: tags.strikethrough, textDecoration: "line-through" },
+]);
+
+/**
+ * 检测当前主题是否为暗色模式
+ */
+export function detectDarkTheme(): boolean {
+  const htmlElement = document.documentElement;
+  const themeClass = Array.from(htmlElement.classList).find((c) => c.startsWith("theme-"));
+  if (!themeClass) return false;
+  return themeClass.includes("dark");
+}
+
+/**
+ * 全局 mermaid 渲染队列，保证同一时刻只有一个 render 在执行
+ */
+let mermaidRenderQueue: Promise<void> = Promise.resolve();
+let mermaidIdCounter = 0;
+
+/**
+ * 从当前 CSS 变量中生成 Mermaid 主题变量，实现与编辑器主题的精确适配
+ */
+/**
+ * 将任意 CSS 颜色值解析为 [r, g, b]，解析失败返回 null
+ */
+function parseColorToRGB(color: string): [number, number, number] | null {
+  if (!color || color === "none" || color === "transparent" || color.startsWith("url("))
+    return null;
+  const s = color.trim().toLowerCase();
+
+  // #rgb / #rrggbb
+  const hexMatch = s.match(/^#([0-9a-f]{3,8})$/);
+  if (hexMatch) {
+    const h = hexMatch[1];
+    if (h.length === 3 || h.length === 4) {
+      return [parseInt(h[0] + h[0], 16), parseInt(h[1] + h[1], 16), parseInt(h[2] + h[2], 16)];
+    }
+    if (h.length >= 6) {
+      return [
+        parseInt(h.slice(0, 2), 16),
+        parseInt(h.slice(2, 4), 16),
+        parseInt(h.slice(4, 6), 16),
+      ];
+    }
+  }
+
+  // rgb(r, g, b) / rgba(r, g, b, a)
+  const rgbMatch = s.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/);
+  if (rgbMatch) {
+    return [parseInt(rgbMatch[1]), parseInt(rgbMatch[2]), parseInt(rgbMatch[3])];
+  }
+
+  return null;
+}
+
+/**
+ * 根据背景色亮度返回适合的文字颜色
+ */
+function contrastTextColor(color: string): string {
+  const rgb = parseColorToRGB(color);
+  if (!rgb) return "#ffffff";
+  const luminance = (0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]) / 255;
+  return luminance > 0.5 ? "#222222" : "#ffffff";
+}
+
+/**
+ * 渲染后修正：仅处理用户在图表语法中通过 style 自定义了 fill 的元素，
+ * 根据其实际背景色调整文本颜色。mermaid 主题自动派生的颜色不干预。
+ */
+function fixMermaidTextContrast(container: HTMLElement): void {
+  // 找所有有行内 style.fill 的形状（用户自定义颜色）
+  const shapes = container.querySelectorAll(
+    "rect[style], circle[style], polygon[style], path[style], ellipse[style]"
+  );
+
+  shapes.forEach((shape) => {
+    const el = shape as SVGElement;
+    // 只处理行内 style 中显式设置了 fill 的元素
+    if (!el.style.fill) return;
+    const rgb = parseColorToRGB(el.style.fill);
+    if (!rgb) return;
+
+    const textColor = contrastTextColor(el.style.fill);
+    const group = el.closest("g");
+    if (!group) return;
+
+    group.querySelectorAll(".nodeLabel, .label div").forEach((label) => {
+      (label as HTMLElement).style.color = textColor;
+    });
+    group.querySelectorAll("text").forEach((text) => {
+      text.setAttribute("fill", textColor);
+    });
+  });
+}
+
+function padMermaidSvgBounds(container: HTMLElement): void {
+  const svg = container.querySelector("svg");
+  if (!svg) return;
+
+  const padding = 8;
+  svg.style.overflow = "visible";
+
+  const viewBox = svg.getAttribute("viewBox");
+  if (viewBox) {
+    const values = viewBox
+      .trim()
+      .split(/[\s,]+/)
+      .map((value) => Number(value));
+
+    if (values.length === 4 && values.every(Number.isFinite)) {
+      const [x, y, width, height] = values;
+      svg.setAttribute(
+        "viewBox",
+        `${x - padding} ${y - padding} ${width + padding * 2} ${height + padding * 2}`
+      );
+    }
+  }
+
+  const expandNumericAttr = (element: Element, attr: "x" | "width", delta: number) => {
+    const rawValue = element.getAttribute(attr);
+    if (!rawValue) return;
+
+    const value = Number(rawValue);
+    if (!Number.isFinite(value)) return;
+
+    element.setAttribute(attr, String(value + delta));
+  };
+
+  container.querySelectorAll("foreignObject").forEach((foreignObject) => {
+    (foreignObject as SVGElement).style.overflow = "visible";
+    expandNumericAttr(foreignObject, "x", -padding / 2);
+    expandNumericAttr(foreignObject, "width", padding);
+  });
+
+  container.querySelectorAll(".nodeLabel, .edgeLabel, .label").forEach((label) => {
+    (label as HTMLElement).style.overflow = "visible";
+  });
+}
+
+function getMermaidThemeVariables(): Record<string, string> {
+  const style = getComputedStyle(document.documentElement);
+  const get = (prop: string) => style.getPropertyValue(prop).trim();
+
+  const primaryColor = get("--primary-color");
+  const secondaryColor = get("--secondary-color");
+  const backgroundColor = get("--background-color-1");
+  const bgColor2 = get("--background-color-2");
+  const bgColor3 = get("--background-color-3");
+  const textColor = get("--text-color");
+  const textColor2 = get("--text-color-2");
+  const borderColor = get("--border-color");
+
+  const isDark = detectDarkTheme();
+
+  // 文字色（primaryTextColor / secondaryTextColor / tertiaryTextColor）
+  // 不手动覆盖，交给 mermaid 根据 darkMode 自动从背景色推算对比色
+
+  return {
+    // ---- 基色 ----
+    primaryColor,
+    primaryBorderColor: borderColor,
+    secondaryColor: bgColor2,
+    secondaryBorderColor: borderColor,
+    tertiaryColor: bgColor3,
+    tertiaryBorderColor: borderColor,
+    lineColor: textColor2,
+    textColor,
+    background: backgroundColor,
+    mainBkg: isDark ? textColor2 : backgroundColor,
+    nodeBorder: borderColor,
+    titleColor: textColor,
+    edgeLabelBackground: backgroundColor,
+
+    // ---- Sequence ----
+    actorBkg: backgroundColor,
+    actorBorder: borderColor,
+    actorTextColor: textColor,
+    actorLineColor: textColor2,
+    signalColor: textColor2,
+    signalTextColor: textColor,
+    labelBoxBkgColor: backgroundColor,
+    labelBoxBorderColor: borderColor,
+    labelTextColor: textColor,
+    loopTextColor: textColor,
+    activationBorderColor: borderColor,
+    activationBkgColor: bgColor2,
+
+    // ---- Note ----
+    noteBkgColor: bgColor2,
+    noteBorderColor: borderColor,
+
+    // ---- Cluster / Subgraph ----
+    clusterBkg: bgColor2,
+    clusterBorder: borderColor,
+
+    // ---- State Diagram ----
+    altBackground: bgColor2,
+
+    // ---- ER Diagram ----
+    attributeBackgroundColorEven: backgroundColor,
+    attributeBackgroundColorOdd: bgColor2,
+
+    // ---- Pie Chart ----
+    pie1: primaryColor,
+    pie2: secondaryColor || bgColor2,
+    pie3: bgColor3,
+    pie4: textColor2,
+    pieTitleTextColor: textColor,
+    pieLegendTextColor: textColor,
+    pieStrokeColor: borderColor,
+    pieOuterStrokeColor: borderColor,
+    pieOpacity: "0.9",
+
+    // ---- Gantt ----
+    gridColor: borderColor,
+    todayLineColor: primaryColor,
+    taskTextOutsideColor: textColor,
+    taskTextClickableColor: primaryColor,
+    activeTaskBkgColor: primaryColor,
+    activeTaskBorderColor: borderColor,
+    doneTaskBkgColor: bgColor3,
+    doneTaskBorderColor: borderColor,
+    critBkgColor: isDark ? "#bf616a" : "#d08770",
+    critBorderColor: isDark ? "#bf616a" : "#d08770",
+    sectionBkgColor: bgColor2,
+    sectionBkgColor2: bgColor3,
+    taskBkgColor: bgColor2,
+    taskBorderColor: borderColor,
+
+    // ---- Git Graph ----
+    git0: primaryColor,
+    git1: secondaryColor || bgColor2,
+    git2: bgColor3,
+    git3: textColor2,
+    gitInv0: backgroundColor,
+    commitLabelColor: textColor,
+    commitLabelBackground: backgroundColor,
+    tagLabelColor: textColor,
+    tagLabelBackground: bgColor2,
+    tagLabelBorder: borderColor,
+
+    // ---- Journey ----
+    fillType0: primaryColor,
+    fillType1: bgColor2,
+    fillType2: bgColor3,
+    fillType3: textColor2,
+  };
+}
+
+/**
+ * 创建 CodeMirror 主题扩展（使用 CSS 变量）
+ */
+export function createThemeExtension(isDark: boolean): Extension[] {
+  const baseTheme = EditorView.theme(
+    {
+      "&": {
+        backgroundColor: "transparent",
+        color: "var(--text-color)",
+      },
+      ".cm-content": {
+        caretColor: "var(--text-color)",
+      },
+      ".cm-cursor, .cm-dropCursor": {
+        borderLeftColor: "var(--text-color)",
+      },
+      "&.cm-focused .cm-selectionBackground, .cm-selectionBackground, .cm-content ::selection": {
+        backgroundColor: "var(--selected-background-color)",
+      },
+      ".cm-activeLine": {
+        backgroundColor: "transparent",
+      },
+      ".cm-gutters": {
+        backgroundColor: "transparent",
+        color: "var(--text-color-3)",
+        border: "none",
+      },
+      ".cm-activeLineGutter": {
+        backgroundColor: "transparent",
+      },
+      ".cm-lineNumbers .cm-gutterElement": {
+        color: "var(--text-color-3)",
+      },
+    },
+    { dark: isDark }
+  );
+
+  const highlightStyle = isDark ? darkHighlightStyle : defaultHighlightStyle;
+  return [baseTheme, syntaxHighlighting(highlightStyle)];
+}
+
+// ─── 语言扩展按需加载 ──────────────────────────────────────
+// 20+ CodeMirror 语言包改为首次使用时动态 import，避免全部打入初始 bundle
+// 缓存 Map：已加载的 language → Extension
+
+const languageExtensionCache = new Map<string, Extension>();
+
+/**
+ * 异步加载语言扩展（首次使用时 import，之后从同步缓存返回）
+ */
+async function loadLanguageExtensionAsync(lang: string): Promise<Extension> {
+  const key = lang.toLowerCase();
+  if (languageExtensionCache.has(key)) {
+    return languageExtensionCache.get(key)!;
+  }
+
+  let ext: Extension = [];
+
+  switch (key) {
+    case "javascript":
+    case "js": {
+      const mod = await import("@codemirror/lang-javascript");
+      ext = mod.javascript();
+      break;
+    }
+    case "typescript":
+    case "ts": {
+      const mod = await import("@codemirror/lang-javascript");
+      ext = mod.javascript({ typescript: true });
+      break;
+    }
+    case "jsx": {
+      const mod = await import("@codemirror/lang-javascript");
+      ext = mod.javascript({ jsx: true });
+      break;
+    }
+    case "tsx": {
+      const mod = await import("@codemirror/lang-javascript");
+      ext = mod.javascript({ jsx: true, typescript: true });
+      break;
+    }
+    case "python":
+    case "py": {
+      const mod = await import("@codemirror/lang-python");
+      ext = mod.python();
+      break;
+    }
+    case "html": {
+      const mod = await import("@codemirror/lang-html");
+      ext = mod.html();
+      break;
+    }
+    case "css": {
+      const mod = await import("@codemirror/lang-css");
+      ext = mod.css();
+      break;
+    }
+    case "json": {
+      const mod = await import("@codemirror/lang-json");
+      ext = mod.json();
+      break;
+    }
+    case "markdown":
+    case "md": {
+      const mod = await import("@codemirror/lang-markdown");
+      ext = mod.markdown();
+      break;
+    }
+    case "go":
+    case "golang": {
+      const mod = await import("@codemirror/lang-go");
+      ext = mod.go();
+      break;
+    }
+    case "java": {
+      const mod = await import("@codemirror/lang-java");
+      ext = mod.java();
+      break;
+    }
+    case "cpp":
+    case "c++":
+    case "c": {
+      const mod = await import("@codemirror/lang-cpp");
+      ext = mod.cpp();
+      break;
+    }
+    case "php": {
+      const mod = await import("@codemirror/lang-php");
+      ext = mod.php();
+      break;
+    }
+    case "rust":
+    case "rs": {
+      const mod = await import("@codemirror/lang-rust");
+      ext = mod.rust();
+      break;
+    }
+    case "sql": {
+      const mod = await import("@codemirror/lang-sql");
+      ext = mod.sql();
+      break;
+    }
+    case "xml": {
+      const mod = await import("@codemirror/lang-xml");
+      ext = mod.xml();
+      break;
+    }
+    case "yaml":
+    case "yml": {
+      const mod = await import("@codemirror/lang-yaml");
+      ext = mod.yaml();
+      break;
+    }
+    case "ruby":
+    case "rb": {
+      const { ruby } = await import("@codemirror/legacy-modes/mode/ruby");
+      ext = StreamLanguage.define(ruby);
+      break;
+    }
+    case "shell":
+    case "bash":
+    case "sh": {
+      const { shell } = await import("@codemirror/legacy-modes/mode/shell");
+      ext = StreamLanguage.define(shell);
+      break;
+    }
+    case "csharp":
+    case "c#":
+    case "cs": {
+      const { csharp } = await import("@codemirror/legacy-modes/mode/clike");
+      ext = StreamLanguage.define(csharp);
+      break;
+    }
+    case "kotlin":
+    case "kt": {
+      const { kotlin } = await import("@codemirror/legacy-modes/mode/clike");
+      ext = StreamLanguage.define(kotlin);
+      break;
+    }
+    case "scala": {
+      const { scala } = await import("@codemirror/legacy-modes/mode/clike");
+      ext = StreamLanguage.define(scala);
+      break;
+    }
+    case "objective-c":
+    case "objc": {
+      const { objectiveC } = await import("@codemirror/legacy-modes/mode/clike");
+      ext = StreamLanguage.define(objectiveC);
+      break;
+    }
+    case "swift": {
+      const { swift } = await import("@codemirror/legacy-modes/mode/swift");
+      ext = StreamLanguage.define(swift);
+      break;
+    }
+    case "dockerfile": {
+      const { dockerFile } = await import("@codemirror/legacy-modes/mode/dockerfile");
+      ext = StreamLanguage.define(dockerFile);
+      break;
+    }
+    case "toml": {
+      const { toml } = await import("@codemirror/legacy-modes/mode/toml");
+      ext = StreamLanguage.define(toml);
+      break;
+    }
+    case "r": {
+      const { r } = await import("@codemirror/legacy-modes/mode/r");
+      ext = StreamLanguage.define(r);
+      break;
+    }
+    case "lua": {
+      const { lua } = await import("@codemirror/legacy-modes/mode/lua");
+      ext = StreamLanguage.define(lua);
+      break;
+    }
+    case "matlab":
+    case "octave":
+    case "m": {
+      const { octave } = await import("@codemirror/legacy-modes/mode/octave");
+      ext = StreamLanguage.define(octave);
+      break;
+    }
+    case "perl":
+    case "pl": {
+      const { perl } = await import("@codemirror/legacy-modes/mode/perl");
+      ext = StreamLanguage.define(perl);
+      break;
+    }
+    case "powershell":
+    case "ps1": {
+      const { powerShell } = await import("@codemirror/legacy-modes/mode/powershell");
+      ext = StreamLanguage.define(powerShell);
+      break;
+    }
+    default:
+      // 未知语言返回空扩展（纯文本模式）
+      ext = [];
+  }
+
+  languageExtensionCache.set(key, ext);
+  return ext;
+}
+
+/** 同步获取已缓存的语言扩展（未缓存时返回 []，即纯文本） */
+function getLanguageExtension(lang: string): Extension {
+  return languageExtensionCache.get(lang.toLowerCase()) ?? [];
+}
+
+/**
+ * 预加载常见语言包（在应用空闲时调用以提升首次使用体验）
+ */
+export function preloadCommonLanguages(): void {
+  const common = ["javascript", "typescript", "python", "json", "html", "css", "markdown", "yaml", "bash", "shell"];
+  for (const lang of common) {
+    loadLanguageExtensionAsync(lang);
+  }
+}
+
+/** 语言别名映射（用于显示） */
+const languageAliases: Record<string, string> = {
+  js: "javascript",
+  ts: "typescript",
+  py: "python",
+  md: "markdown",
+  "c++": "cpp",
+  rs: "rust",
+  yml: "yaml",
+  rb: "ruby",
+  sh: "shell",
+  "c#": "csharp",
+  cs: "csharp",
+  kt: "kotlin",
+  objc: "objective-c",
+  m: "matlab",
+  pl: "perl",
+  ps1: "powershell",
+};
+
+/** 支持的语言列表 */
+const supportedLanguages = [
+  { value: "", label: "plain text" },
+  { value: "javascript", label: "JavaScript" },
+  { value: "typescript", label: "TypeScript" },
+  { value: "python", label: "Python" },
+  { value: "java", label: "Java" },
+  { value: "cpp", label: "C++" },
+  { value: "c", label: "C" },
+  { value: "csharp", label: "C#" },
+  { value: "php", label: "PHP" },
+  { value: "ruby", label: "Ruby" },
+  { value: "go", label: "Go" },
+  { value: "rust", label: "Rust" },
+  { value: "swift", label: "Swift" },
+  { value: "kotlin", label: "Kotlin" },
+  { value: "scala", label: "Scala" },
+  { value: "objective-c", label: "Objective-C" },
+  { value: "html", label: "HTML" },
+  { value: "css", label: "CSS" },
+  { value: "sql", label: "SQL" },
+  { value: "shell", label: "Shell" },
+  { value: "bash", label: "Bash" },
+  { value: "powershell", label: "PowerShell" },
+  { value: "json", label: "JSON" },
+  { value: "xml", label: "XML" },
+  { value: "yaml", label: "YAML" },
+  { value: "toml", label: "TOML" },
+  { value: "markdown", label: "Markdown" },
+  { value: "dockerfile", label: "Dockerfile" },
+  { value: "lua", label: "Lua" },
+  { value: "matlab", label: "MATLAB" },
+  { value: "perl", label: "Perl" },
+  { value: "octave", label: "Octave" },
+  { value: "r", label: "R" },
+  { value: "mermaid", label: "Mermaid" },
+];
+
+/** Mermaid 显示模式选项 */
+const mermaidDisplayModes = [
+  { value: "code", label: "代码" },
+  { value: "mixed", label: "混合" },
+  { value: "diagram", label: "图表" },
+];
+
+/** 全局 Mermaid 默认显示模式 */
+let globalMermaidDefaultMode: MermaidDisplayMode = "diagram";
+
+/** 设置全局 Mermaid 默认显示模式 */
+export function setGlobalMermaidDefaultMode(mode: MermaidDisplayMode): void {
+  globalMermaidDefaultMode = mode;
+}
+
+/**
+ * 规范化语言名称
+ */
+function normalizeLanguage(language: string): string {
+  const lower = language.toLowerCase();
+  return languageAliases[lower] || lower;
+}
+
+/**
+ * 代码块 NodeView 类
+ */
+export class CodeBlockView implements NodeView {
+  dom: HTMLElement;
+  cm: EditorView;
+  node: ProseMirrorNode;
+  view: ProseMirrorView;
+  getPos: () => number | undefined;
+  updating = false;
+  languageCompartment: Compartment;
+  themeCompartment: Compartment;
+  lineNumbersCompartment: Compartment;
+  searchHighlightCompartment: Compartment;
+  mermaidPreview: HTMLElement | null = null;
+  mermaidDisplayMode: MermaidDisplayMode = globalMermaidDefaultMode;
+  themeObserver: MutationObserver | null = null;
+  headerElement: HTMLElement | null = null;
+  editorContainer: HTMLElement | null = null;
+  contextMenu: HTMLElement | null = null;
+  sourceTextElement: HTMLElement | null = null; // 源码模式下的纯文本显示元素
+  // 源码模式相关
+  private sourceViewMode: boolean = false;
+  private sourceViewUnsubscribe: (() => void) | null = null;
+  private _destroyed = false;
+
+  constructor(node: ProseMirrorNode, view: ProseMirrorView, getPos: () => number | undefined) {
+    this.node = node;
+    this.view = view;
+    this.getPos = getPos;
+    this.languageCompartment = new Compartment();
+    this.themeCompartment = new Compartment();
+    this.lineNumbersCompartment = new Compartment();
+    this.searchHighlightCompartment = new Compartment();
+
+    // 检测当前主题
+    const isDark = detectDarkTheme();
+
+    // 规范化语言名称
+    const normalizedLang = normalizeLanguage(node.attrs.language);
+    if (normalizedLang !== node.attrs.language) {
+      requestAnimationFrame(() => {
+        const pos = this.getPos();
+        if (pos !== undefined) {
+          this.view.dispatch(
+            this.view.state.tr.setNodeMarkup(pos, null, {
+              ...this.node.attrs,
+              language: normalizedLang,
+            })
+          );
+        }
+      });
+    }
+
+    // 用户手动创建的 mermaid 代码块（内容为空），使用混合模式方便编辑
+    if (normalizedLang === "mermaid" && !node.textContent) {
+      this.mermaidDisplayMode = "mixed";
+    }
+
+    // 创建容器
+    this.dom = document.createElement("div");
+    this.dom.className = "milkup-code-block";
+
+    // 创建头部（语言选择器）
+    this.headerElement = this.createHeader(normalizedLang);
+    this.dom.appendChild(this.headerElement);
+
+    // 头部右键菜单
+    this.headerElement.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      this.showContextMenu(e);
+    });
+
+    // 创建 CodeMirror 编辑器容器
+    this.editorContainer = document.createElement("div");
+    this.editorContainer.className = "milkup-code-block-editor";
+    this.dom.appendChild(this.editorContainer);
+
+    this.cm = new EditorView({
+      state: CMEditorState.create({
+        doc: node.textContent,
+        extensions: [
+          history(),
+          cmKeymap.of([
+            {
+              key: "Ctrl-Enter",
+              run: () => {
+                // 检查是否在列表中
+                const pos = this.getPos();
+                if (pos !== undefined) {
+                  const $pos = this.view.state.doc.resolve(pos);
+                  // 检查祖先节点中是否有 list_item
+                  let inList = false;
+                  for (let d = $pos.depth; d > 0; d--) {
+                    const node = $pos.node(d);
+                    if (node.type.name === "list_item" || node.type.name === "task_item") {
+                      inList = true;
+                      break;
+                    }
+                  }
+                  if (inList) {
+                    // 在列表中，创建新的列表项
+                    this.exitCodeBlockAndCreateListItem();
+                    return true;
+                  }
+                }
+                // 不在列表中，使用默认行为
+                this.exitCodeBlock(1);
+                return true;
+              },
+            },
+            {
+              key: "ArrowDown",
+              run: (cmView) => {
+                const { state } = cmView;
+                const { main } = state.selection;
+                const line = state.doc.lineAt(main.head);
+                if (line.number === state.doc.lines) {
+                  this.exitCodeBlock(1);
+                  return true;
+                }
+                return false;
+              },
+            },
+            {
+              key: "ArrowUp",
+              run: (cmView) => {
+                const { state } = cmView;
+                const { main } = state.selection;
+                const line = state.doc.lineAt(main.head);
+                if (line.number === 1) {
+                  this.exitCodeBlock(-1);
+                  return true;
+                }
+                return false;
+              },
+            },
+            {
+              key: "ArrowLeft",
+              run: (cmView) => {
+                const { state } = cmView;
+                const { main } = state.selection;
+                if (main.head === 0 && main.empty) {
+                  this.exitCodeBlock(-1);
+                  return true;
+                }
+                return false;
+              },
+            },
+            {
+              key: "ArrowRight",
+              run: (cmView) => {
+                const { state } = cmView;
+                const { main } = state.selection;
+
+                // 在第一位按右箭头，跳出代码块到开始围栏之前
+                if (main.head === 0 && main.empty) {
+                  this.exitCodeBlock(-1);
+                  return true;
+                }
+
+                // 在最后一位按右箭头，跳出代码块
+                if (main.head === state.doc.length && main.empty) {
+                  this.exitCodeBlock(1);
+                  return true;
+                }
+
+                return false;
+              },
+            },
+            {
+              key: "Backspace",
+              run: (cmView) => {
+                if (cmView.state.doc.length === 0) {
+                  this.deleteCodeBlock();
+                  return true;
+                }
+                return false;
+              },
+            },
+            ...defaultKeymap,
+            ...historyKeymap,
+          ]),
+          this.themeCompartment.of(createThemeExtension(isDark)),
+          this.languageCompartment.of(getLanguageExtension(normalizedLang)),
+          this.lineNumbersCompartment.of(lineNumbers()),
+          this.searchHighlightCompartment.of([]),
+          EditorView.updateListener.of((update) => this.onCMUpdate(update)),
+          EditorView.domEventHandlers({
+            focus: () => this.forwardSelection(),
+            blur: () => {},
+            contextmenu: (e) => {
+              e.preventDefault();
+              this.showContextMenu(e);
+              return true;
+            },
+          }),
+        ],
+      }),
+      parent: this.editorContainer,
+    });
+
+    // 异步加载语言扩展（首次使用时动态 import，非阻塞）
+    if (normalizedLang) {
+      loadLanguageExtensionAsync(normalizedLang).then((ext) => {
+        if (this.cm && !this._destroyed) {
+          this.cm.dispatch({
+            effects: this.languageCompartment.reconfigure(ext),
+          });
+        }
+      });
+    }
+
+    // 监听主题变化
+    this.setupThemeObserver();
+
+    // Mermaid 预览
+    if (normalizedLang === "mermaid") {
+      this.createMermaidPreview(node.textContent);
+    }
+
+    // 如果代码块是空的，自动聚焦
+    if (!node.textContent) {
+      requestAnimationFrame(() => {
+        this.cm.focus();
+      });
+    }
+
+    // 源码模式初始化
+    this.initSourceViewMode(normalizedLang);
+  }
+
+  /**
+   * 初始化源码模式
+   */
+  private initSourceViewMode(language: string): void {
+    // 订阅源码模式状态变化
+    this.sourceViewUnsubscribe = sourceViewManager.subscribe((sourceView) => {
+      this.setSourceViewMode(sourceView);
+    });
+  }
+
+  /**
+   * 设置源码模式
+   */
+  private setSourceViewMode(enabled: boolean): void {
+    if (this.sourceViewMode === enabled) return;
+    this.sourceViewMode = enabled;
+
+    if (enabled) {
+      // 进入源码模式
+      this.dom.classList.add("source-view");
+
+      // 隐藏头部
+      if (this.headerElement) {
+        this.headerElement.style.display = "none";
+      }
+
+      // 隐藏 Mermaid 预览
+      if (this.mermaidPreview) {
+        this.mermaidPreview.style.display = "none";
+      }
+
+      // 隐藏 CodeMirror
+      if (this.editorContainer) {
+        this.editorContainer.style.display = "none";
+      }
+
+      // 创建源码容器（拆分成多行以参与行号计数）
+      if (!this.sourceTextElement) {
+        this.sourceTextElement = document.createElement("div");
+        this.sourceTextElement.className = "milkup-code-block-source-container";
+        this.sourceTextElement.contentEditable = "true";
+        this.sourceTextElement.spellcheck = false;
+        this.sourceTextElement.style.cssText = `
+          position: relative;
+          font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+          font-size: 14px;
+          line-height: 1.6;
+          padding: 0;
+          margin: 0;
+          color: inherit;
+          background: transparent;
+          border: none;
+          outline: none;
+        `;
+
+        // 监听输入事件
+        this.sourceTextElement.addEventListener("input", () => {
+          this.handleSourceTextInput();
+        });
+
+        // 监听键盘事件
+        this.sourceTextElement.addEventListener("keydown", (e) => {
+          this.handleSourceTextKeydown(e);
+        });
+
+        // 阻止默认的粘贴行为，使用纯文本粘贴
+        this.sourceTextElement.addEventListener("paste", (e) => {
+          e.preventDefault();
+          const text = e.clipboardData?.getData("text/plain") || "";
+          document.execCommand("insertText", false, text);
+        });
+
+        this.dom.insertBefore(this.sourceTextElement, this.editorContainer);
+      }
+
+      // 更新源码内容（拆分成多行）
+      const language = this.node.attrs.language || "";
+      const content = this.node.textContent;
+      const fullMarkdown = `\`\`\`${language}\n${content}\n\`\`\``;
+      const lines = fullMarkdown.split("\n");
+
+      // 清空容器
+      this.sourceTextElement.innerHTML = "";
+
+      // 为每一行创建一个 div 元素以参与行号计数
+      lines.forEach((line) => {
+        const lineDiv = document.createElement("div");
+        lineDiv.className = "milkup-with-line-number";
+        lineDiv.style.cssText = `
+          white-space: pre;
+          min-height: 1.6em;
+        `;
+        lineDiv.textContent = line;
+        this.sourceTextElement!.appendChild(lineDiv);
+      });
+
+      this.sourceTextElement.style.display = "block";
+    } else {
+      // 退出源码模式
+      this.dom.classList.remove("source-view");
+
+      // 显示 CodeMirror
+      if (this.editorContainer) {
+        this.editorContainer.style.display = "";
+      }
+
+      // 显示头部
+      if (this.headerElement) {
+        this.headerElement.style.display = "";
+      }
+
+      // 隐藏源码文本元素
+      if (this.sourceTextElement) {
+        this.sourceTextElement.style.display = "none";
+      }
+
+      // 恢复 Mermaid 预览
+      if (this.mermaidPreview && this.node.attrs.language === "mermaid") {
+        this.updateMermaidDisplay();
+      }
+    }
+  }
+
+  /**
+   * 处理源码文本输入
+   */
+  private handleSourceTextInput(): void {
+    if (!this.sourceTextElement || this.updating) return;
+
+    // 从所有子 div 中收集文本内容
+    const lines: string[] = [];
+    const childDivs = this.sourceTextElement.querySelectorAll("div.milkup-with-line-number");
+    childDivs.forEach((div) => {
+      lines.push(div.textContent || "");
+    });
+    const text = lines.join("\n");
+
+    const pos = this.getPos();
+    if (pos === undefined) return;
+
+    // 保存光标位置
+    const selection = window.getSelection();
+    let cursorOffset = 0;
+    if (selection && selection.rangeCount > 0) {
+      const range = selection.getRangeAt(0);
+      if (range.startContainer.nodeType === Node.TEXT_NODE) {
+        cursorOffset = range.startOffset;
+        // 计算相对于整个文本的偏移量
+        let node: Node | null = range.startContainer;
+        while (node && node !== this.sourceTextElement && node.previousSibling) {
+          node = node.previousSibling;
+          cursorOffset += node.textContent?.length || 0;
+        }
+      }
+    }
+
+    this.updating = true;
+
+    // 检查是否是完整的代码块格式（必须有开头和结尾的 ```）
+    const fenceMatch = text.match(/^```([^\n]*?)\n([\s\S]*?)\n```$/);
+
+    if (fenceMatch) {
+      // 仍然是完整的代码块格式，更新内容
+      const [, language, content] = fenceMatch;
+      const tr = this.view.state.tr;
+      let needsUpdate = false;
+
+      // 更新语言属性
+      const normalizedLang = language || "";
+      if (normalizedLang !== this.node.attrs.language) {
+        tr.setNodeMarkup(pos, null, {
+          ...this.node.attrs,
+          language: normalizedLang,
+        });
+        needsUpdate = true;
+      }
+
+      // 更新内容
+      if (content !== this.node.textContent) {
+        const start = pos + 1;
+        const end = pos + 1 + this.node.content.size;
+        tr.replaceWith(start, end, content ? this.view.state.schema.text(content) : []);
+        needsUpdate = true;
+      }
+
+      if (needsUpdate) {
+        this.view.dispatch(tr);
+      }
+
+      // 更新行显示（重新拆分成多行）
+      const newLines = text.split("\n");
+      this.sourceTextElement.innerHTML = "";
+      newLines.forEach((line) => {
+        const lineDiv = document.createElement("div");
+        lineDiv.className = "milkup-with-line-number";
+        lineDiv.style.cssText = `
+          white-space: pre;
+          min-height: 1.6em;
+        `;
+        lineDiv.textContent = line;
+        this.sourceTextElement!.appendChild(lineDiv);
+      });
+    } else {
+      // 不是完整的代码块格式，转换为段落
+      const tr = this.view.state.tr;
+      const nodeEnd = pos + this.node.nodeSize;
+
+      tr.delete(pos, nodeEnd);
+
+      if (text.trim()) {
+        const textLines = text.split("\n").filter((line) => line.trim());
+        const paragraphs = textLines.map((line) =>
+          this.view.state.schema.nodes.paragraph.create(
+            null,
+            line ? this.view.state.schema.text(line) : null
+          )
+        );
+
+        if (paragraphs.length === 0) {
+          paragraphs.push(this.view.state.schema.nodes.paragraph.create());
+        }
+
+        tr.insert(pos, paragraphs);
+        const newPos = pos + 1;
+        tr.setSelection(TextSelection.create(tr.doc, newPos));
+      } else {
+        const paragraph = this.view.state.schema.nodes.paragraph.create();
+        tr.insert(pos, paragraph);
+        const newPos = pos + 1;
+        tr.setSelection(TextSelection.create(tr.doc, newPos));
+      }
+
+      this.view.dispatch(tr);
+      this.view.focus();
+    }
+
+    this.updating = false;
+
+    // 如果仍然是代码块,恢复光标位置
+    if (fenceMatch) {
+      requestAnimationFrame(() => {
+        if (this.sourceTextElement && selection) {
+          try {
+            // 找到光标应该在的位置
+            let remainingOffset = cursorOffset;
+            let targetDiv: HTMLElement | null = null;
+            let targetOffset = 0;
+
+            const divs = this.sourceTextElement.querySelectorAll("div.milkup-with-line-number");
+            for (let i = 0; i < divs.length; i++) {
+              const div = divs[i] as HTMLElement;
+              const textNode = div.firstChild;
+              if (!textNode || textNode.nodeType !== Node.TEXT_NODE) continue;
+
+              const textLength = textNode.textContent?.length || 0;
+              if (remainingOffset <= textLength) {
+                targetDiv = div;
+                targetOffset = remainingOffset;
+                break;
+              }
+              remainingOffset -= textLength + 1; // +1 for newline
+            }
+
+            if (targetDiv && targetDiv.firstChild) {
+              const range = document.createRange();
+              const textNode = targetDiv.firstChild;
+              const offset = Math.min(targetOffset, textNode.textContent?.length || 0);
+              range.setStart(textNode, offset);
+              range.collapse(true);
+              selection.removeAllRanges();
+              selection.addRange(range);
+            }
+          } catch (e) {
+            // 忽略光标恢复错误
+          }
+        }
+      });
+    }
+  }
+
+  /**
+   * 处理源码文本键盘事件
+   */
+  private handleSourceTextKeydown(e: KeyboardEvent): void {
+    // 允许基本的编辑操作
+    if (e.key === "Tab") {
+      e.preventDefault();
+      // 插入两个空格
+      document.execCommand("insertText", false, "  ");
+    }
+  }
+
+  /**
+   * 创建头部（语言选择器和 Mermaid 模式选择器）
+   */
+  private createHeader(language: string): HTMLElement {
+    const header = document.createElement("div");
+    header.className = "milkup-code-block-header";
+
+    // 语言选择器
+    const langSelector = this.createCustomSelect(supportedLanguages, language, (value) =>
+      this.setLanguage(value)
+    );
+    langSelector.classList.add("milkup-code-block-lang-select");
+    header.appendChild(langSelector);
+
+    // Mermaid 模式选择器（仅在 mermaid 语言时显示）
+    if (language === "mermaid") {
+      const modeSelector = this.createCustomSelect(
+        mermaidDisplayModes,
+        this.mermaidDisplayMode,
+        (value) => this.setMermaidDisplayMode(value as MermaidDisplayMode)
+      );
+      modeSelector.classList.add("milkup-code-block-mode-select");
+      header.appendChild(modeSelector);
+    }
+
+    // 复制按钮（hover 时显示）
+    const copyBtn = document.createElement("button");
+    copyBtn.className = "milkup-code-block-copy-btn";
+    copyBtn.type = "button";
+    copyBtn.title = "复制代码块";
+    copyBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
+    copyBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      this.copyCodeBlock();
+      // 短暂显示已复制反馈
+      copyBtn.classList.add("copied");
+      copyBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+      setTimeout(() => {
+        copyBtn.classList.remove("copied");
+        copyBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
+      }, 1500);
+    });
+    header.appendChild(copyBtn);
+
+    return header;
+  }
+
+  /**
+   * 创建自定义下拉选择器
+   */
+  private createCustomSelect(
+    options: { value: string; label: string }[],
+    currentValue: string,
+    onChange: (value: string) => void
+  ): HTMLElement {
+    const container = document.createElement("div");
+    container.className = "milkup-custom-select";
+
+    const button = document.createElement("button");
+    button.className = "milkup-custom-select-button";
+    button.type = "button";
+    const currentOption = options.find((o) => o.value === currentValue);
+    button.textContent = currentOption?.label || options[0].label;
+
+    const dropdown = document.createElement("div");
+    dropdown.className = "milkup-custom-select-dropdown";
+
+    for (const option of options) {
+      const item = document.createElement("div");
+      item.className = "milkup-custom-select-item";
+      if (option.value === currentValue) {
+        item.classList.add("selected");
+      }
+      item.textContent = option.label;
+      item.dataset.value = option.value;
+      item.addEventListener("click", (e) => {
+        e.stopPropagation();
+        button.textContent = option.label;
+        // 更新选中状态
+        dropdown.querySelectorAll(".milkup-custom-select-item").forEach((el) => {
+          el.classList.remove("selected");
+        });
+        item.classList.add("selected");
+        container.classList.remove("open");
+        onChange(option.value);
+      });
+      dropdown.appendChild(item);
+    }
+
+    button.addEventListener("click", (e) => {
+      e.stopPropagation();
+      // 关闭所有其他下拉框
+      document.querySelectorAll(".milkup-custom-select.open").forEach((el) => {
+        if (el !== container) {
+          el.classList.remove("open");
+        }
+      });
+
+      // 检测是否需要向上弹出
+      const buttonRect = button.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const spaceBelow = viewportHeight - buttonRect.bottom;
+      const dropdownHeight = 240; // 最大高度
+
+      if (spaceBelow < dropdownHeight && buttonRect.top > spaceBelow) {
+        container.classList.add("dropup");
+      } else {
+        container.classList.remove("dropup");
+      }
+
+      container.classList.toggle("open");
+    });
+
+    // 点击外部关闭
+    document.addEventListener("click", () => {
+      container.classList.remove("open");
+    });
+
+    container.appendChild(button);
+    container.appendChild(dropdown);
+    return container;
+  }
+
+  /**
+   * 获取代码块的完整 Markdown 文本（含围栏）
+   */
+  private getCodeBlockMarkdown(): string {
+    const language = this.node.attrs.language || "";
+    const content = this.cm.state.doc.toString();
+    return `\`\`\`${language}\n${content}\n\`\`\``;
+  }
+
+  /**
+   * 复制代码块到剪贴板
+   */
+  private copyCodeBlock(): void {
+    navigator.clipboard.writeText(this.getCodeBlockMarkdown());
+  }
+
+  /**
+   * 显示右键菜单
+   */
+  private async showContextMenu(e: MouseEvent): Promise<void> {
+    // 移除已存在的右键菜单
+    this.hideContextMenu();
+
+    const isHeaderContextMenu = !!(e.target instanceof HTMLElement
+      ? e.target.closest(".milkup-code-block-header")
+      : null);
+
+    const menu = document.createElement("div");
+    menu.className = "milkup-context-menu";
+
+    // 检查是否有选区
+    const { main } = this.cm.state.selection;
+    const hasSelection = !main.empty;
+
+    // 检查剪贴板是否有内容（文本或图片）
+    let hasClipboardContent = true; // 默认启用粘贴
+    try {
+      const items = await navigator.clipboard.read();
+      hasClipboardContent = items.length > 0;
+    } catch {
+      // 如果 read() 不支持，尝试 readText()
+      try {
+        const text = await navigator.clipboard.readText();
+        hasClipboardContent = text.length > 0;
+      } catch {
+        hasClipboardContent = true; // 默认启用粘贴
+      }
+    }
+
+    // 复制
+    const copyItem = this.createContextMenuItem("复制", !hasSelection, () => {
+      const selectedText = this.cm.state.sliceDoc(main.from, main.to);
+      navigator.clipboard.writeText(selectedText);
+      this.hideContextMenu();
+    });
+    menu.appendChild(copyItem);
+
+    // 剪切
+    const cutItem = this.createContextMenuItem("剪切", !hasSelection, () => {
+      const selectedText = this.cm.state.sliceDoc(main.from, main.to);
+      navigator.clipboard.writeText(selectedText);
+      this.cm.dispatch({
+        changes: { from: main.from, to: main.to, insert: "" },
+      });
+      this.hideContextMenu();
+    });
+    menu.appendChild(cutItem);
+
+    // 粘贴 - 使用 Clipboard API 读取文本
+    const pasteItem = this.createContextMenuItem("粘贴", !hasClipboardContent, async () => {
+      this.hideContextMenu();
+      this.cm.focus();
+      try {
+        const text = await navigator.clipboard.readText();
+        if (text) {
+          const { main } = this.cm.state.selection;
+          this.cm.dispatch({
+            changes: { from: main.from, to: main.to, insert: text },
+          });
+        }
+      } catch {
+        console.warn("无法访问剪贴板");
+      }
+    });
+    menu.appendChild(pasteItem);
+
+    // 分隔线
+    const separator = document.createElement("div");
+    separator.className = "milkup-context-menu-separator";
+    menu.appendChild(separator);
+
+    // 复制代码块
+    const copyBlockItem = this.createContextMenuItem("复制代码块", false, () => {
+      this.copyCodeBlock();
+      this.hideContextMenu();
+    });
+    menu.appendChild(copyBlockItem);
+
+    if (isHeaderContextMenu) {
+      const separator = document.createElement("div");
+      separator.className = "milkup-context-menu-separator";
+      menu.appendChild(separator);
+
+      const deleteBlockItem = this.createContextMenuItem("删除此代码块", false, () => {
+        this.deleteCodeBlock();
+        this.hideContextMenu();
+      });
+      menu.appendChild(deleteBlockItem);
+    }
+
+    // 定位菜单
+    menu.style.left = `${e.clientX}px`;
+    menu.style.top = `${e.clientY}px`;
+
+    document.body.appendChild(menu);
+    this.contextMenu = menu;
+
+    // 调整位置，确保菜单在视口内
+    const menuRect = menu.getBoundingClientRect();
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    if (menuRect.right > viewportWidth) {
+      menu.style.left = `${viewportWidth - menuRect.width - 8}px`;
+    }
+    if (menuRect.bottom > viewportHeight) {
+      menu.style.top = `${viewportHeight - menuRect.height - 8}px`;
+    }
+
+    // 点击外部关闭
+    const closeHandler = (event: MouseEvent) => {
+      if (!menu.contains(event.target as Node)) {
+        this.hideContextMenu();
+        document.removeEventListener("click", closeHandler);
+      }
+    };
+    setTimeout(() => {
+      document.addEventListener("click", closeHandler);
+    }, 0);
+  }
+
+  /**
+   * 创建右键菜单项
+   */
+  private createContextMenuItem(
+    label: string,
+    disabled: boolean,
+    onClick: () => void
+  ): HTMLElement {
+    const item = document.createElement("div");
+    item.className = "milkup-context-menu-item";
+    if (disabled) {
+      item.classList.add("disabled");
+    }
+    item.textContent = label;
+
+    if (!disabled) {
+      item.addEventListener("click", (e) => {
+        e.stopPropagation();
+        onClick();
+      });
+    }
+
+    return item;
+  }
+
+  /**
+   * 隐藏右键菜单
+   */
+  private hideContextMenu(): void {
+    if (this.contextMenu) {
+      this.contextMenu.remove();
+      this.contextMenu = null;
+    }
+    // 移除其他可能存在的右键菜单
+    document.querySelectorAll(".milkup-context-menu").forEach((el) => el.remove());
+  }
+
+  /**
+   * 设置主题观察器
+   */
+  private setupThemeObserver(): void {
+    const htmlElement = document.documentElement;
+
+    this.themeObserver = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (mutation.type === "attributes" && mutation.attributeName === "class") {
+          const isDark = detectDarkTheme();
+          this.updateTheme(isDark);
+          // 更新 Mermaid 预览
+          if (this.node.attrs.language === "mermaid" && this.mermaidPreview) {
+            // 先清空旧内容，避免新旧 SVG 层叠
+            this.mermaidPreview.innerHTML = "";
+            this.createMermaidPreview(this.cm.state.doc.toString());
+          }
+        }
+      }
+    });
+
+    this.themeObserver.observe(htmlElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+  }
+
+  /**
+   * 更新主题
+   */
+  private updateTheme(isDark: boolean): void {
+    this.cm.dispatch({
+      effects: this.themeCompartment.reconfigure(createThemeExtension(isDark)),
+    });
+  }
+
+  /**
+   * 更新搜索高亮（将 ProseMirror 搜索状态映射到 CodeMirror 装饰）
+   */
+  private updateSearchHighlights(): void {
+    const pos = this.getPos();
+    if (pos === undefined) return;
+
+    const searchState = searchPluginKey.getState(this.view.state);
+    if (!searchState || !searchState.query || searchState.matches.length === 0) {
+      this.cm.dispatch({
+        effects: this.searchHighlightCompartment.reconfigure([]),
+      });
+      return;
+    }
+
+    const nodeStart = pos + 1;
+    const nodeEnd = pos + 1 + this.node.content.size;
+
+    const cmRanges = searchState.matches
+      .map((m, i) => ({ ...m, index: i }))
+      .filter((m) => m.from >= nodeStart && m.to <= nodeEnd)
+      .map((m) => {
+        const cls =
+          m.index === searchState.currentIndex
+            ? "milkup-search-match milkup-search-match-current"
+            : "milkup-search-match";
+        return CMDecoration.mark({ class: cls }).range(m.from - nodeStart, m.to - nodeStart);
+      });
+
+    const decoSet = cmRanges.length > 0 ? CMDecoration.set(cmRanges, true) : CMDecoration.none;
+
+    this.cm.dispatch({
+      effects: this.searchHighlightCompartment.reconfigure(EditorView.decorations.of(decoSet)),
+    });
+  }
+
+  /**
+   * 设置语言
+   */
+  private setLanguage(language: string): void {
+    const pos = this.getPos();
+    if (pos === undefined) return;
+
+    const prevLanguage = this.node.attrs.language;
+
+    // 更新 ProseMirror 节点属性
+    this.view.dispatch(
+      this.view.state.tr.setNodeMarkup(pos, null, {
+        ...this.node.attrs,
+        language,
+      })
+    );
+
+    // 更新 CodeMirror 语言扩展（先同步设置已缓存的，再异步加载未缓存的）
+    this.cm.dispatch({
+      effects: this.languageCompartment.reconfigure(getLanguageExtension(language)),
+    });
+    if (language) {
+      loadLanguageExtensionAsync(language).then((ext) => {
+        if (this.cm && !this._destroyed) {
+          this.cm.dispatch({
+            effects: this.languageCompartment.reconfigure(ext),
+          });
+        }
+      });
+    }
+
+    // 更新头部（添加或移除 Mermaid 模式选择器）
+    if ((prevLanguage === "mermaid") !== (language === "mermaid")) {
+      this.updateHeader(language);
+    }
+
+    // 更新 Mermaid 预览
+    if (language === "mermaid") {
+      this.createMermaidPreview(this.cm.state.doc.toString());
+    } else if (this.mermaidPreview) {
+      this.mermaidPreview.remove();
+      this.mermaidPreview = null;
+    }
+  }
+
+  /**
+   * 更新头部
+   */
+  private updateHeader(language: string): void {
+    if (this.headerElement) {
+      const newHeader = this.createHeader(language);
+      this.dom.replaceChild(newHeader, this.headerElement);
+      this.headerElement = newHeader;
+    }
+  }
+
+  /**
+   * 设置 Mermaid 显示模式
+   */
+  private setMermaidDisplayMode(mode: MermaidDisplayMode): void {
+    this.mermaidDisplayMode = mode;
+    this.updateMermaidDisplay();
+  }
+
+  /**
+   * 更新 Mermaid 显示
+   */
+  private updateMermaidDisplay(): void {
+    if (!this.editorContainer || !this.mermaidPreview) return;
+
+    switch (this.mermaidDisplayMode) {
+      case "code":
+        this.editorContainer.style.display = "block";
+        this.mermaidPreview.style.display = "none";
+        break;
+      case "diagram":
+        this.editorContainer.style.display = "none";
+        this.mermaidPreview.style.display = "block";
+        break;
+      case "mixed":
+      default:
+        this.editorContainer.style.display = "block";
+        this.mermaidPreview.style.display = "block";
+        break;
+    }
+  }
+
+  /**
+   * 创建 Mermaid 预览
+   */
+  private async createMermaidPreview(content: string): Promise<void> {
+    if (!this.mermaidPreview) {
+      this.mermaidPreview = document.createElement("div");
+      this.mermaidPreview.className = "milkup-mermaid-preview";
+      this.dom.appendChild(this.mermaidPreview);
+    }
+
+    const preview = this.mermaidPreview;
+
+    // 排队执行，避免多个 mermaid 块同时 render 互相干扰
+    mermaidRenderQueue = mermaidRenderQueue.then(async () => {
+      // renderId 需要在 try 外声明，以便 catch 中清理 mermaid 遗留的临时元素
+      const renderId = `mermaid-${++mermaidIdCounter}`;
+      try {
+        const mermaid = await import("mermaid");
+        const isDark = detectDarkTheme();
+
+        mermaid.default.initialize({
+          startOnLoad: false,
+          darkMode: isDark,
+          theme: "base",
+          themeVariables: getMermaidThemeVariables(),
+        });
+
+        const { svg } = await mermaid.default.render(renderId, content);
+        preview.innerHTML = svg;
+        padMermaidSvgBounds(preview);
+        // 根据实际背景色修正文本颜色
+        fixMermaidTextContrast(preview);
+      } catch (error) {
+        // mermaid.render() 语法错误时会在 removeTempElements() 之前抛出异常，
+        // 导致临时 DOM 元素（<div id="d..."> / <svg> / <iframe>）遗留在 document.body 中。
+        // 这些孤儿元素不断累积会干扰页面布局，导致 tab 栏等 UI 元素显示异常。
+        document.getElementById(`d${renderId}`)?.remove();
+        document.getElementById(renderId)?.remove();
+        document.getElementById(`i${renderId}`)?.remove();
+        preview.innerHTML = `<div class="milkup-mermaid-error">Mermaid 渲染错误</div>`;
+      }
+    });
+
+    await mermaidRenderQueue;
+    this.updateMermaidDisplay();
+  }
+
+  /**
+   * CodeMirror 更新回调
+   */
+  private onCMUpdate(update: ViewUpdate): void {
+    if (this.updating) return;
+
+    if (update.docChanged) {
+      const pos = this.getPos();
+      if (pos === undefined) return;
+
+      const newText = update.state.doc.toString();
+
+      // 更新 ProseMirror 文档
+      const tr = this.view.state.tr;
+      const start = pos + 1;
+      const end = pos + 1 + this.node.content.size;
+
+      tr.replaceWith(start, end, newText ? this.view.state.schema.text(newText) : []);
+
+      this.view.dispatch(tr);
+
+      // 更新 Mermaid 预览
+      if (this.node.attrs.language === "mermaid") {
+        this.createMermaidPreview(newText);
+      }
+    }
+  }
+
+  /**
+   * 转发选区到 ProseMirror
+   */
+  private forwardSelection(): void {
+    const pos = this.getPos();
+    if (pos === undefined) return;
+
+    const { from, to } = this.cm.state.selection.main;
+    const start = pos + 1 + from;
+    const end = pos + 1 + to;
+
+    const selection = TextSelection.create(this.view.state.doc, start, end);
+
+    if (!this.view.state.selection.eq(selection)) {
+      this.view.dispatch(this.view.state.tr.setSelection(selection));
+    }
+  }
+
+  /**
+   * 跳出代码块
+   */
+  private exitCodeBlock(direction: 1 | -1): void {
+    const pos = this.getPos();
+    if (pos === undefined) return;
+
+    const { state } = this.view;
+    const nodeEnd = pos + this.node.nodeSize;
+
+    if (direction === 1) {
+      const isLastNode = nodeEnd >= state.doc.content.size;
+
+      if (isLastNode) {
+        const paragraph = state.schema.nodes.paragraph.create();
+        const tr = state.tr.insert(nodeEnd, paragraph);
+        tr.setSelection(TextSelection.create(tr.doc, nodeEnd + 1));
+        this.view.dispatch(tr);
+        this.view.focus();
+        return;
+      }
+
+      const selection = Selection.near(state.doc.resolve(nodeEnd), 1);
+      this.view.dispatch(state.tr.setSelection(selection));
+      this.view.focus();
+    } else {
+      const selection = Selection.near(state.doc.resolve(pos), -1);
+      // 如果找到的选区不在代码块之前，说明前方无可用位置，需创建段落
+      if (selection.from >= pos) {
+        const paragraph = state.schema.nodes.paragraph.create();
+        const tr = state.tr.insert(pos, paragraph);
+        tr.setSelection(TextSelection.create(tr.doc, pos + 1));
+        this.view.dispatch(tr);
+        this.view.focus();
+        return;
+      }
+      this.view.dispatch(state.tr.setSelection(selection));
+      this.view.focus();
+    }
+  }
+
+  /**
+   * 跳出代码块并创建新的列表项
+   */
+  private exitCodeBlockAndCreateListItem(): void {
+    const pos = this.getPos();
+    if (pos === undefined) return;
+
+    const { state } = this.view;
+    const $pos = state.doc.resolve(pos);
+
+    // 查找列表项节点
+    let listItemDepth = -1;
+    for (let d = $pos.depth; d > 0; d--) {
+      const node = $pos.node(d);
+      if (node.type.name === "list_item" || node.type.name === "task_item") {
+        listItemDepth = d;
+        break;
+      }
+    }
+
+    // 确认在列表项中
+    if (listItemDepth === -1) {
+      this.exitCodeBlock(1);
+      return;
+    }
+
+    // 获取列表项之后的位置（而非内容末尾）
+    const listItemAfter = $pos.after(listItemDepth);
+
+    // 创建新的列表项
+    const newListItem = state.schema.nodes.list_item.create(
+      null,
+      state.schema.nodes.paragraph.create()
+    );
+
+    const tr = state.tr;
+    tr.insert(listItemAfter, newListItem);
+    tr.setSelection(TextSelection.create(tr.doc, listItemAfter + 2));
+    this.view.dispatch(tr);
+    this.view.focus();
+  }
+
+  /**
+   * 删除代码块
+   */
+  private deleteCodeBlock(): void {
+    const pos = this.getPos();
+    if (pos === undefined) return;
+
+    const { state } = this.view;
+    const nodeEnd = pos + this.node.nodeSize;
+
+    const tr = state.tr.delete(pos, nodeEnd);
+
+    if (tr.doc.content.size === 0) {
+      const paragraph = state.schema.nodes.paragraph.create();
+      tr.insert(0, paragraph);
+      tr.setSelection(TextSelection.create(tr.doc, 1));
+    } else {
+      const $pos = tr.doc.resolve(Math.min(pos, tr.doc.content.size));
+      tr.setSelection(Selection.near($pos, -1));
+    }
+
+    this.view.dispatch(tr);
+    this.view.focus();
+  }
+
+  /**
+   * 更新节点
+   */
+  update(node: ProseMirrorNode): boolean {
+    if (node.type !== this.node.type) return false;
+
+    const prevLanguage = this.node.attrs.language;
+    this.node = node;
+    const newText = node.textContent;
+
+    if (newText !== this.cm.state.doc.toString()) {
+      this.updating = true;
+      this.cm.dispatch({
+        changes: {
+          from: 0,
+          to: this.cm.state.doc.length,
+          insert: newText,
+        },
+      });
+      this.updating = false;
+    }
+
+    // 更新源码模式下的文本内容
+    if (this.sourceViewMode && this.sourceTextElement) {
+      const language = node.attrs.language || "";
+      const content = node.textContent;
+      const fullMarkdown = `\`\`\`${language}\n${content}\n\`\`\``;
+      const lines = fullMarkdown.split("\n");
+
+      // 收集当前的文本内容
+      const currentLines: string[] = [];
+      const childDivs = this.sourceTextElement.querySelectorAll("div.milkup-with-line-number");
+      childDivs.forEach((div) => {
+        currentLines.push(div.textContent || "");
+      });
+      const currentText = currentLines.join("\n");
+
+      // 只在内容真正变化时更新
+      if (currentText !== fullMarkdown) {
+        // 保存光标位置
+        const selection = window.getSelection();
+        let cursorOffset = 0;
+        if (selection && selection.rangeCount > 0) {
+          const range = selection.getRangeAt(0);
+          if (range.startContainer.nodeType === Node.TEXT_NODE) {
+            cursorOffset = range.startOffset;
+            // 计算相对于整个文本的偏移量
+            let node: Node | null = range.startContainer;
+            while (node && node !== this.sourceTextElement && node.previousSibling) {
+              node = node.previousSibling;
+              cursorOffset += node.textContent?.length || 0;
+            }
+          }
+        }
+
+        this.updating = true;
+
+        // 清空容器并重新创建行
+        this.sourceTextElement.innerHTML = "";
+        lines.forEach((line) => {
+          const lineDiv = document.createElement("div");
+          lineDiv.className = "milkup-with-line-number";
+          lineDiv.style.cssText = `
+            white-space: pre;
+            min-height: 1.6em;
+          `;
+          lineDiv.textContent = line;
+          this.sourceTextElement!.appendChild(lineDiv);
+        });
+
+        this.updating = false;
+
+        // 恢复光标位置
+        if (selection && cursorOffset > 0) {
+          requestAnimationFrame(() => {
+            if (!this.sourceTextElement) return;
+            try {
+              // 找到光标应该在的位置
+              let remainingOffset = cursorOffset;
+              let targetDiv: HTMLElement | null = null;
+              let targetOffset = 0;
+
+              const divs = this.sourceTextElement.querySelectorAll("div.milkup-with-line-number");
+              for (let i = 0; i < divs.length; i++) {
+                const div = divs[i] as HTMLElement;
+                const textNode = div.firstChild;
+                if (!textNode || textNode.nodeType !== Node.TEXT_NODE) continue;
+
+                const textLength = textNode.textContent?.length || 0;
+                if (remainingOffset <= textLength) {
+                  targetDiv = div;
+                  targetOffset = remainingOffset;
+                  break;
+                }
+                remainingOffset -= textLength + 1; // +1 for newline
+              }
+
+              if (targetDiv && targetDiv.firstChild) {
+                const range = document.createRange();
+                const textNode = targetDiv.firstChild;
+                const offset = Math.min(targetOffset, textNode.textContent?.length || 0);
+                range.setStart(textNode, offset);
+                range.collapse(true);
+                selection.removeAllRanges();
+                selection.addRange(range);
+              }
+            } catch (e) {
+              // 忽略光标恢复错误
+            }
+          });
+        }
+      }
+    }
+
+    // 更新语言
+    if (node.attrs.language !== prevLanguage) {
+      const newLang = node.attrs.language;
+      this.cm.dispatch({
+        effects: this.languageCompartment.reconfigure(getLanguageExtension(newLang)),
+      });
+      // 异步加载未缓存的语言包
+      if (newLang) {
+        loadLanguageExtensionAsync(newLang).then((ext) => {
+          if (this.cm && !this._destroyed) {
+            this.cm.dispatch({
+              effects: this.languageCompartment.reconfigure(ext),
+            });
+          }
+        });
+      }
+
+      // mermaid 状态变化时，更新头部和预览
+      const language = node.attrs.language;
+      if ((prevLanguage === "mermaid") !== (language === "mermaid")) {
+        this.updateHeader(language);
+      }
+      if (language === "mermaid") {
+        this.mermaidDisplayMode = globalMermaidDefaultMode;
+        this.createMermaidPreview(newText);
+      } else if (this.mermaidPreview) {
+        this.mermaidPreview.remove();
+        this.mermaidPreview = null;
+        // 恢复编辑器容器的显示（diagram 模式下会被隐藏）
+        if (this.editorContainer) {
+          this.editorContainer.style.display = "block";
+        }
+      }
+    }
+
+    // 更新搜索高亮
+    this.updateSearchHighlights();
+
+    return true;
+  }
+
+  /**
+   * 设置选区
+   */
+  setSelection(anchor: number, head: number): void {
+    this.cm.focus();
+    this.cm.dispatch({
+      selection: { anchor, head },
+    });
+  }
+
+  /**
+   * 选区是否在此节点内
+   */
+  selectNode(): void {
+    this.cm.focus();
+  }
+
+  /**
+   * 停止事件传播
+   * 只阻止键盘事件，允许鼠标事件传播到自定义组件
+   */
+  stopEvent(event: Event): boolean {
+    // 允许头部区域的鼠标事件（下拉选择器）
+    if (event.target instanceof HTMLElement) {
+      const isInHeader = event.target.closest(".milkup-code-block-header");
+      if (isInHeader) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /**
+   * 忽略变更
+   */
+  ignoreMutation(): boolean {
+    return true;
+  }
+
+  /**
+   * 销毁
+   */
+  destroy(): void {
+    this._destroyed = true;
+    this.cm.destroy();
+    if (this.mermaidPreview) {
+      this.mermaidPreview.remove();
+    }
+    if (this.themeObserver) {
+      this.themeObserver.disconnect();
+      this.themeObserver = null;
+    }
+    this.hideContextMenu();
+    // 取消订阅源码模式状态
+    if (this.sourceViewUnsubscribe) {
+      this.sourceViewUnsubscribe();
+      this.sourceViewUnsubscribe = null;
+    }
+  }
+}
+
+/**
+ * 创建代码块 NodeView 工厂函数
+ */
+export function createCodeBlockNodeView(
+  node: ProseMirrorNode,
+  view: ProseMirrorView,
+  getPos: () => number | undefined
+): CodeBlockView {
+  return new CodeBlockView(node, view, getPos);
+}
